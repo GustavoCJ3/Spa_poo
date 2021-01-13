@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package balneario;
+package Habitaciones;
+
 
 /**
  *
@@ -36,8 +37,8 @@ public class Doble extends DecoradorHabitacion{
     
     @Override
     public void infoHabitacion(){
-        super.infoHabitacion();
         System.out.println("Habitacion doble");
+        super.infoHabitacion();
         
         if (banoCompartido){
             System.out.println("El baño está compartido");

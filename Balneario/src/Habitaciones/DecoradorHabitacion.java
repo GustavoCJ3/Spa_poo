@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package balneario;
+package Habitaciones;
 
 /**
  *
@@ -43,6 +43,7 @@ public abstract class DecoradorHabitacion extends Habitacion{
     
     @Override
     public void infoHabitacion(){
-        habitacion.infoHabitacion();
+        System.out.println("Numero de habitación: " + getNumero());
+        System.out.println("Precio de la habitación: " + getPrecio());
     }
 }

@@ -4,18 +4,19 @@
  * and open the template in the editor.
  */
 package balneario;
+import Habitaciones.*;
 import java.util.ArrayList;
 /**
  *
  * @author maxpi
  */
 public class Balneario {
-    private Balneario instancia;
+    private static Balneario instancia;
     private final ArrayList<Habitacion> habitaciones= new ArrayList();
     
     private Balneario(){}
     
-    public Balneario getInstancia(){
+    public static Balneario getInstancia(){
         if(instancia == null){
             instancia = new Balneario();
         }
@@ -29,23 +30,13 @@ public class Balneario {
     }
     
     public boolean cargarDatos(){
+        System.out.println("Datos cargados");
         return true;
     }
     
-    public static boolean guardarDatos(){
+    public boolean guardarDatos(){
+        System.out.println("\nDatos guardados\n");
         return true;
-    }
-    
-    public void agregarHabitacion(){
-        
-    }
-    
-    public void eliminarHabitacion(){
-        
-    }
-    
-    public static void main(String[] args) {
-        
     }
     
 }

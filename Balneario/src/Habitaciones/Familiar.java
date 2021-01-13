@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package balneario;
+package Habitaciones;
+
 
 /**
  *
@@ -39,8 +40,8 @@ public class Familiar extends DecoradorHabitacion{
     
     @Override
     public void infoHabitacion(){
-        super.infoHabitacion();
         System.out.println("Habitacion familiar");
+        super.infoHabitacion();
         
         if (camasSupletorias){
             System.out.println("Tiene camas supletorias");

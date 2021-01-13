@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package balneario;
+package Habitaciones;
 
 /**
  *
@@ -35,6 +35,7 @@ public class Habitacion {
     }
     
     public void infoHabitacion(){
+        System.out.println("Habitacion individual");
         System.out.println("Numero de habitación: " + getNumero());
         System.out.println("Precio de la habitación: " + getPrecio());
     }
