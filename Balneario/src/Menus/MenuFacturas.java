@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Menus;
+package menus;
 
 /**
  *
  * @author maxpi
  */
 public class MenuFacturas extends Menu{
+    //tratarlo como int a la hora de ir generando ids únicos, y luego convertir a String para inserción en la clase
+    private static int idServicios = 0;
+    
     
     public MenuFacturas(){
         super("1. Listado de todas las facturas\n"

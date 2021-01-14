@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Menus;
+package menus;
 
 import balneario.Balneario;
 import java.util.Scanner;
@@ -15,7 +10,7 @@ import java.util.Scanner;
 public abstract class Menu {
     private final Balneario balneario;
     private final String mensaje;
-    private final int max;
+    private final int max;    
     
     public Menu(String mensaje, int max){
         balneario = Balneario.getInstancia();

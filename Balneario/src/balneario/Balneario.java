@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package balneario;
-import Habitaciones.*;
+import habitaciones.*;
 import java.util.ArrayList;
+import reservas.Reserva;
+import reservas.Servicio;
 /**
  *
  * @author maxpi
@@ -13,6 +10,9 @@ import java.util.ArrayList;
 public class Balneario {
     private static Balneario instancia;
     private final ArrayList<Habitacion> habitaciones= new ArrayList();
+    private ArrayList<Servicio> servicios = new ArrayList<Servicio>();
+    private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+    
     
     private Balneario(){}
     
@@ -39,4 +39,13 @@ public class Balneario {
         return true;
     }
     
+    
+        //Getters y Setters
+    public ArrayList<Servicio> getServicios() {
+        return servicios;
+    }
+
+    public ArrayList<Reserva> getReservas() {
+        return reservas;
+    }    
 }

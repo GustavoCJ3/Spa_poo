@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Menus;
+package menus;
 import java.util.ArrayList;
 
 /**
@@ -51,6 +46,27 @@ public class MenuPrincipal extends Menu{
     
     public static void main(String[] args) {
         MenuPrincipal menu = new MenuPrincipal();
+        
+        
+        /* //TODO quitarlo luego. Pruebas. Sólo MenuServicios es funcional de momento
+        MenuReservas mr = new MenuReservas();
+        MenuServicios ms = new MenuServicios();
+        
+        ms.agregarServicio("Baño relajante", 10);
+        ms.agregarServicio("Baño relajante2", 20);
+        ms.agregarServicio("Baño relajante3", 30);
+        ms.agregarServicio("Baño relajante4", 40);
+        ms.agregarServicio("Baño relajante5", 50);
+        
+        ms.listaServicios();
+        ms.listaServicios(3);
+        
+        ms.eliminarServicio(2);
+        ms.eliminarServicio(4);
+        ms.listaServicios();
+        /////////////////////// */
+        
+        
         
         menu.iniciar();
     }

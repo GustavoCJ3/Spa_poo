@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Menus;
+package menus;
+
+import reservas.Servicio;
 
 /**
  *
  * @author maxpi
  */
 public class MenuServicios extends Menu{
+    private static int idServicios = 0;
     
     public MenuServicios(){
         super("1. Listado de todos los servicios\n"
@@ -23,19 +21,51 @@ public class MenuServicios extends Menu{
     }
     
     private void listaServicios(){
-        
+        for(Servicio s: getBalneario().getServicios()){
+            System.out.println("\n\nCódigo de servicio: " + s.getCodigo()
+                    + "." + s.infoServicio());
+        }
     }
     
-    private void listaServicios(int codigo){
-    
+    private int listaServicios(int codigo){
+        for(Servicio s: getBalneario().getServicios()){
+            if (s.getCodigo() == codigo) {
+            System.out.println("Código de servicio: " + codigo
+                    + "." + s.infoServicio());
+            return codigo;
+            }
+        }
+        return -1; //TODO
     }
     
-    private void agregarServicio(){
+    private int agregarServicio(String descripcion, float coste){
+        boolean duplicado = false;
+        do {        
+            for(Servicio s: getBalneario().getServicios()){
+                if(s.getCodigo() == idServicios) {
+                    duplicado = true;
+                    idServicios++;
+                } else {
+                    duplicado = false;
+                }
+            }
+        } while(duplicado);
         
+        Servicio s = new Servicio(idServicios, descripcion, coste);
+        
+        getBalneario().getServicios().add(s);
+        return getBalneario().getServicios().indexOf(s); //devolvemos el índice del objeto insertado
     }
     
-    private void eliminarServicio(){
-        
+    private int eliminarServicio(int codigo){
+        for(Servicio s: getBalneario().getServicios()){
+            if(s.getCodigo() == codigo) {
+                int i = getBalneario().getServicios().indexOf(s);
+                getBalneario().getServicios().remove(s);
+                return i; //devolvemos el índice en el que estaba el objeto eliminado
+            }
+        }
+        return -1; //si no se ha podido eliminar
     }
     
     @Override
@@ -48,10 +78,10 @@ public class MenuServicios extends Menu{
                 listaServicios();
                 break;
             case 3:
-                agregarServicio();
+                //agregarServicio(); //TODO
                 break;
             case 4:
-                eliminarServicio();
+                //eliminarServicio(); //TODO
                 break;
             case 5:
                 getBalneario().guardarDatos();
