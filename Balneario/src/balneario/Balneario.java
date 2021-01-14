@@ -1,5 +1,5 @@
 package balneario;
-import habitaciones.*;
+import habitaciones.Habitacion;
 import java.util.ArrayList;
 import reservas.Reserva;
 import reservas.Servicio;
@@ -16,14 +16,6 @@ public class Balneario {
     
     private Balneario(){}
     
-    public static Balneario getInstancia(){
-        if(instancia == null){
-            instancia = new Balneario();
-        }
-        
-        return instancia;
-    }
-    
     @Override
     public Object clone() throws CloneNotSupportedException{
         throw new CloneNotSupportedException();
@@ -39,8 +31,30 @@ public class Balneario {
         return true;
     }
     
+    public Habitacion buscarHabitacion(int numero){
+        for (Habitacion h: habitaciones){
+            if (h.getNumero() == numero){
+                return h;
+            }
+        }
+        return null;
+    }
+    
     
         //Getters y Setters
+    
+    public static Balneario getInstancia(){
+        if(instancia == null){
+            instancia = new Balneario();
+        }
+        
+        return instancia;
+    }
+
+    public ArrayList<Habitacion> getHabitaciones() {
+        return habitaciones;
+    }
+    
     public ArrayList<Servicio> getServicios() {
         return servicios;
     }
