@@ -1,5 +1,7 @@
 package menus;
 
+import clientes.Cliente;
+
 /**
  *
  * @author maxpi
@@ -17,11 +19,19 @@ public class MenuClientes extends Menu{
     }
     
     private void listaClientes(){
-        
+        for(Cliente s: getBalneario().getClientes()){
+            s.infoCliente();
+        }
     }
     
-    private void listaClientes(String DNI){
-        
+    private int listaClientes(String DNI){
+        for(Cliente c: getBalneario().getClientes()){
+            if (c.getDni() == DNI) {
+            
+            return Integer.parseInt(DNI);
+            }
+        }
+        return -1; //TODO
     }
     
     private void agregarCliente(){

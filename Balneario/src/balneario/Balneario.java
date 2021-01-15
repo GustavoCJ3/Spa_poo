@@ -1,4 +1,6 @@
 package balneario;
+import clientes.Cliente;
+import facturas.Factura;
 import habitaciones.Habitacion;
 import java.util.ArrayList;
 import reservas.Reserva;
@@ -12,6 +14,8 @@ public class Balneario {
     private final ArrayList<Habitacion> habitaciones= new ArrayList();
     private ArrayList<Servicio> servicios = new ArrayList<Servicio>();
     private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+    private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    private ArrayList<Factura> facturas = new ArrayList<Factura>();
     
     
     private Balneario(){}
@@ -62,4 +66,12 @@ public class Balneario {
     public ArrayList<Reserva> getReservas() {
         return reservas;
     }    
+
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+    
+    public ArrayList<Factura> getFacturas() {
+        return facturas;
+    }   
 }

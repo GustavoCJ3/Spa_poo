@@ -35,5 +35,9 @@ public class Cliente {
     public String getNombreApellidos() {
         return nombreApellidos;
     }
+
+    public String getDni() {
+        return dni;
+    }
     
 }
