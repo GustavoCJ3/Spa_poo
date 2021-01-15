@@ -1,4 +1,4 @@
-package reservas;
+package servicios;
 
 /**
  *

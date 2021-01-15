@@ -1,6 +1,6 @@
 package menus;
 
-import reservas.Servicio;
+import servicios.Servicio;
 
 /**
  *

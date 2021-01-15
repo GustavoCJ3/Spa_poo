@@ -1,5 +1,6 @@
 package reservas;
 
+import servicios.Servicio;
 import java.time.LocalDate;
 
 /**

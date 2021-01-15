@@ -2,7 +2,7 @@ package balneario;
 import habitaciones.Habitacion;
 import java.util.ArrayList;
 import reservas.Reserva;
-import reservas.Servicio;
+import servicios.Servicio;
 /**
  *
  * @author maxpi
