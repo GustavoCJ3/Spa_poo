@@ -28,10 +28,8 @@ public class Cliente {
     }
 
     
-    //Getters y Setters
-    
+    //Getters y Setters    
     //TODO: generar código automáticamente para los que hagan falta.
-
     public String getNombreApellidos() {
         return nombreApellidos;
     }

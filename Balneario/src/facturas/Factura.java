@@ -31,15 +31,31 @@ public class Factura {
     
     //Métodos    
     public String infoFactura(){
-        //String listaTotalServicios = (bucle para listar)
-        
         return "\nCódigo de factura: " + codigo
-                + "\nCliente: " + cliente.getNombreApellidos()
-                //TODO: preparar de antemano un String con la lista de servicios con comas y formato adecuado y ponerlo aquí
-                + "\nCoste total: " + costeTotal
+                + "\nDNI de cliente: " + cliente.getDni()
                 + "\nFecha de facturación: " + fechaFactura;
     }
     
     //Getters y Setters
     //TODO: generar código automáticamente para los que hagan falta.
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public ArrayList<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public float getCosteTotal() {
+        return costeTotal;
+    }
+
+    public LocalDate getFechaFactura() {
+        return fechaFactura;
+    }
+    
 }

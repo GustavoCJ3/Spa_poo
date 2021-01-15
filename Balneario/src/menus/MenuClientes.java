@@ -19,16 +19,18 @@ public class MenuClientes extends Menu{
     }
     
     private void listaClientes(){
-        for(Cliente s: getBalneario().getClientes()){
-            s.infoCliente();
+        for(Cliente c: getBalneario().getClientes()){
+            c.infoCliente();
         }
     }
     
     private int listaClientes(String dni){
+        //TODO: ésta y otras funciones similares podría ponerlas como métodos en Balneario, igual que ha hecho Gustavo. ya mañana
         for(Cliente c: getBalneario().getClientes()){
             if (c.getDni() == dni) {
-            
-            return Integer.parseInt(dni);
+                c.infoCliente();
+                
+                return Integer.parseInt(dni); //Si el cliente existe
             }
         }
         return -1; //TODO
