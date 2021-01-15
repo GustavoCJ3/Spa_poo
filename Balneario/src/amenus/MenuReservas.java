@@ -1,4 +1,4 @@
-package menus;
+package amenus;
 
 import reservas.Reserva;
 

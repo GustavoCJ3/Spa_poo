@@ -1,4 +1,4 @@
-package facturas;
+package clientes;
 
 /**
  *

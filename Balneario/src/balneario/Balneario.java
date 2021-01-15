@@ -1,5 +1,5 @@
 package balneario;
-import habitaciones.Habitacion;
+import ahabitaciones.Habitacion;
 import java.util.ArrayList;
 import reservas.Reserva;
 import reservas.Servicio;

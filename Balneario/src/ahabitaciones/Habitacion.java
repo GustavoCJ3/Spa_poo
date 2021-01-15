@@ -1,4 +1,4 @@
-package habitaciones;
+package ahabitaciones;
 
 import java.util.Scanner;
 

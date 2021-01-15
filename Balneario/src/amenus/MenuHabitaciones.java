@@ -1,5 +1,7 @@
-package menus;
-import habitaciones.*;
+package amenus;
+import ahabitaciones.Doble;
+import ahabitaciones.Familiar;
+import ahabitaciones.Habitacion;
 import java.util.Scanner;
 
 

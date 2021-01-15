@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package menus;
+package amenus;
 
 import balneario.Balneario;
 import java.util.Scanner;

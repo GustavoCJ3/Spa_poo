@@ -1,5 +1,6 @@
 package facturas;
 
+import clientes.Cliente;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import reservas.Reserva;
