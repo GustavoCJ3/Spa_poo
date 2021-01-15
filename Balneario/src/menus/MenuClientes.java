@@ -24,18 +24,28 @@ public class MenuClientes extends Menu{
         }
     }
     
-    private int listaClientes(String DNI){
+    private int listaClientes(String dni){
         for(Cliente c: getBalneario().getClientes()){
-            if (c.getDni() == DNI) {
+            if (c.getDni() == dni) {
             
-            return Integer.parseInt(DNI);
+            return Integer.parseInt(dni);
             }
         }
         return -1; //TODO
     }
     
-    private void agregarCliente(){
-
+    private int agregarCliente(String dni, String nombreApellidos, String telefonoMovil){
+        //Comprobamos que el DNI no esté ya en el sistema
+        for(Cliente c: getBalneario().getClientes()){
+            if (c.getDni() == dni) {
+                return -1; //TODO habría que meter un enum con las constantes. Ya mañana.
+            } 
+        }
+        
+        Cliente c = new Cliente(dni, nombreApellidos, telefonoMovil);
+        
+        getBalneario().getClientes().add(c);
+        return getBalneario().getServicios().indexOf(c); //devolvemos el índice del objeto insertado
     }
     
     @Override
@@ -48,7 +58,7 @@ public class MenuClientes extends Menu{
                 listaClientes();
                 break;
             case 3:
-                agregarCliente();
+                //agregarCliente();
                 break;
             case 4:
                 getBalneario().guardarDatos();
