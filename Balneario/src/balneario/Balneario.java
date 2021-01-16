@@ -6,7 +6,9 @@ import habitaciones.Habitacion;
 import reservas.Reserva;
 import servicios.Servicio;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -16,7 +18,8 @@ import java.io.Serializable;
  */
 public class Balneario implements Serializable{
     private static Balneario instancia;
-    private final ArrayList<Habitacion> habitaciones= new ArrayList();
+    private final String NOMBRE_ARCHIVO = "Configuracion.dat";
+    private ArrayList<Habitacion> habitaciones= new ArrayList();
     private ArrayList<Servicio> servicios = new ArrayList<Servicio>();
     private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
     private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
@@ -32,11 +35,21 @@ public class Balneario implements Serializable{
     
     public boolean cargarDatos(){
         try{
-            FileInputStream in = new FileInputStream("Configuracion.dat");
+            FileInputStream in = new FileInputStream(NOMBRE_ARCHIVO);
             ObjectInputStream ois = new ObjectInputStream(in);
-            instancia = (Balneario)ois.readObject();
+            habitaciones = (ArrayList<Habitacion>)ois.readObject();
+            servicios = (ArrayList<Servicio>)ois.readObject();
+            reservas = (ArrayList<Reserva>)ois.readObject();
+            clientes = (ArrayList<Cliente>)ois.readObject();
+            facturas = (ArrayList<Factura>)ois.readObject();
+            ois.close();
+            ois.close();
+        }catch(FileNotFoundException e){
+            System.out.println("No se ha encontrado el archivo de configuración.");
+            return false;
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            System.out.println("Se ha producido un error en la lectura del archivo.");
+            return false;
         }
         System.out.println("Datos cargados");
         return true;
@@ -44,12 +57,22 @@ public class Balneario implements Serializable{
     
     public boolean guardarDatos(){
         try{
-            FileOutputStream out = new FileOutputStream("Configuracion.dat");
+            FileOutputStream out = new FileOutputStream(NOMBRE_ARCHIVO);
             ObjectOutputStream oos = new ObjectOutputStream(out);
-            oos.writeObject(getInstancia());
+            oos.writeObject(habitaciones);
+            oos.writeObject(servicios);
+            oos.writeObject(reservas);
+            oos.writeObject(clientes);
+            oos.writeObject(facturas);
             oos.flush();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+            oos.close();
+            out.close();
+        }catch(FileNotFoundException e){
+            System.out.println("No se ha podido crear el archivo de configuración.");
+            return false;
+        }catch(IOException e){
+            System.out.println("Se ha producido un error en la escritura.");
+            return false;
         }
         
         System.out.println("\nDatos guardados\n");
