@@ -1,6 +1,4 @@
 package menus;
-import habitaciones.Doble;
-import habitaciones.Familiar;
 import habitaciones.Habitacion;
 import habitaciones.FactoryHabitacion;
 import java.util.Scanner;
@@ -41,7 +39,6 @@ public class MenuHabitaciones extends Menu{
         System.out.println("\nLa habitación no está registrada\n");
     }
     
-    //TODO separar el codigo en bloques mas pequeños
     private void agregarHabitacion(){
         int numero = 0;
         float precio = 0;

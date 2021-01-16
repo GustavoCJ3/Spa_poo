@@ -1,10 +1,12 @@
 package clientes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ro
  */
-public class Cliente {
+public class Cliente implements Serializable{
     //Atributos
     private String dni;
     private String nombreApellidos;

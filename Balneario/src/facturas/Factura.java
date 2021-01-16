@@ -1,6 +1,7 @@
 package facturas;
 
 import clientes.Cliente;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import reservas.Reserva;
@@ -9,7 +10,7 @@ import reservas.Reserva;
  *
  * @author Ro
  */
-public class Factura {
+public class Factura implements Serializable{
     //Atributos
     private String codigo;
     private Cliente cliente;

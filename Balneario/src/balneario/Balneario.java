@@ -1,15 +1,20 @@
 package balneario;
+import java.util.ArrayList;
 import clientes.Cliente;
 import facturas.Factura;
 import habitaciones.Habitacion;
-import java.util.ArrayList;
 import reservas.Reserva;
 import servicios.Servicio;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 /**
  *
  * @author maxpi
  */
-public class Balneario {
+public class Balneario implements Serializable{
     private static Balneario instancia;
     private final ArrayList<Habitacion> habitaciones= new ArrayList();
     private ArrayList<Servicio> servicios = new ArrayList<Servicio>();
@@ -26,11 +31,27 @@ public class Balneario {
     }
     
     public boolean cargarDatos(){
+        try{
+            FileInputStream in = new FileInputStream("Configuracion.dat");
+            ObjectInputStream ois = new ObjectInputStream(in);
+            instancia = (Balneario)ois.readObject();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
         System.out.println("Datos cargados");
         return true;
     }
     
     public boolean guardarDatos(){
+        try{
+            FileOutputStream out = new FileOutputStream("Configuracion.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(out);
+            oos.writeObject(getInstancia());
+            oos.flush();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        
         System.out.println("\nDatos guardados\n");
         return true;
     }

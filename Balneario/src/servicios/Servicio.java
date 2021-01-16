@@ -1,10 +1,12 @@
 package servicios;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ro
  */
-public class Servicio {
+public class Servicio implements Serializable{
     //Atributos
     private int codigo;
     private String descripcion;

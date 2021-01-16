@@ -1,12 +1,13 @@
 package habitaciones;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  *
  * @author maxpi
  */
-public class Habitacion {
+public class Habitacion implements Serializable{
     private int numero;
     private float precio;
     

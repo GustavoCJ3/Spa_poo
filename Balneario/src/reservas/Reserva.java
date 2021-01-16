@@ -1,12 +1,13 @@
 package reservas;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author Ro
  */
-public abstract class Reserva {
+public abstract class Reserva implements Serializable{
     //Atributos
     private int numReserva;
     private int numHabitacion;
