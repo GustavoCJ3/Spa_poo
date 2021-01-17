@@ -22,19 +22,18 @@ public class MenuServicios extends Menu{
     
     private void listaServicios() {
         for(Servicio s: getBalneario().getServicios()){
-            System.out.println("\n\nCódigo de servicio: " + s.getCodigo()
-                    + "." + s.infoServicio());
+            System.out.println(s.infoServicio());
         }
     }
     
-    private void listaServicios(int codigo) {
+    private void listaServicios(int codigo) {        
         for(Servicio s: getBalneario().getServicios()){
             if (s.getCodigo() == codigo) {
-            System.out.println("Código de servicio: " + codigo
-                    + s.infoServicio());
+                System.out.println(s.infoServicio());
             return;
             }
         }
+        System.out.println("No existe ningún servicio con el código indicado.\n");
     }
     
     private void agregarServicio(){
@@ -56,18 +55,18 @@ public class MenuServicios extends Menu{
         } while(duplicado);        
         
         getBalneario().getServicios().add(FactoryServicio.getServicio(idServicio));
-        System.out.println("Servicio añadido.");
+        System.out.println("Servicio añadido.\n");
 
     }
     
     private void eliminarServicio(int id){     
         for(Servicio s: getBalneario().getServicios()){
             if(s.getCodigo() == id) {
-                int i = getBalneario().getServicios().indexOf(s);
                 getBalneario().getServicios().remove(s);
+                return;
             }
         }
-        return;
+        System.out.println("No existe ningún servicio con el código indicado.\n");
     }
     
     @Override

@@ -7,6 +7,7 @@ import java.time.LocalDate;
  *
  * @author Ro
  */
+//TODO intentar encajarlo en patrón composite, una vez ya esté funcionando todo
 public abstract class Reserva implements Serializable{
     //Atributos
     private int numReserva;

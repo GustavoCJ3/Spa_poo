@@ -20,14 +20,14 @@ public class MenuClientes extends Menu{
     
     private void listaClientes(){
         for(Cliente c: getBalneario().getClientes()){
-            c.infoCliente();
+            System.out.println("" + c.infoCliente() +"\n");
         }
     }
     
     private void listaClientes(String dni){
         for(Cliente c: getBalneario().getClientes()){
             if (c.getDni() == dni) {
-                c.infoCliente();
+                System.out.println("" + c.infoCliente() +"\n");
                 
                 return; //Si el cliente existe
             }

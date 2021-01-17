@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package menus;
 
 import balneario.Balneario;
@@ -53,7 +48,7 @@ public abstract class Menu {
                         flag = false;
                     }
                 }catch(Exception e){
-                    System.out.println("\nPor favor, introduce una opción correcta\n");
+                    System.out.println("\nPor favor, introduce una opción válida.\n");
                 }
 
             }while(flag);

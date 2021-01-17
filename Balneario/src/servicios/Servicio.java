@@ -24,8 +24,9 @@ public class Servicio implements Serializable{
     
     //Métodos    
     public String infoServicio(){
-        return "\nDescripción: " + descripcion
-                + "\nCoste: " + coste;
+        return "Código de servicio: " + codigo
+                + "\nDescripción: " + descripcion
+                + "\nCoste: " + coste + " euros.\n";
     }
 
     public static int pedirId(){
@@ -37,7 +38,8 @@ public class Servicio implements Serializable{
             try{
                 Scanner sc = new Scanner(System.in);
                 id = sc.nextInt();
-               
+                
+                flag = false;               
             }catch(Exception e){
                 System.out.println("\nEl valor introducido no es un numero\n");
             }

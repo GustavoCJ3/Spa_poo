@@ -7,6 +7,9 @@ import java.io.*;
  *
  * @author Ro
  */
+
+//TODO: luego implemento la clase abstracta Factoria y hago todo el tinglado para enazar las factorias individuales,
+//porque basta con meterle el ID que sea en cada caso. Se le puede incluso pasar un String y procesarlo interiormente en cada caso
 public class FactoryServicio {
     
     public static Servicio getServicio(int idServicio){
@@ -14,16 +17,15 @@ public class FactoryServicio {
         float coste = 0f;
         boolean flag = true;
         
-        Scanner sc = new Scanner(System.in);
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in),1);
-        
         System.out.println("Introduce una descripción del servicio:\n");             
         do {
             try {
+                //TODO problemas de codificación al meterle caracters no ASCII. Arreglar.
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in),1);
                 descripcion = br.readLine();
                 flag = false;
             }
-            catch (IOException ex) {
+            catch (Exception e) {
                 System.out.println("Ha ocurrido un error de lectura. Vuelve a intentarlo.");
             }
         } while (flag);     
@@ -32,9 +34,10 @@ public class FactoryServicio {
         flag = true;
         do{
             try{
+                Scanner sc = new Scanner(System.in);
                 coste = sc.nextFloat();
                 flag = false;
-            }catch(NumberFormatException e){
+            }catch(Exception e){
                 System.out.println("\nEl coste del servicio debe ser un dato de tipo float. Inténtalo otra vez:\n");
             }
         }while(flag);        
