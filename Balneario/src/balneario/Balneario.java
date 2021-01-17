@@ -67,7 +67,7 @@ public class Balneario implements Serializable{
             oos.flush();
             oos.close();
             out.close();
-        }catch(FileNotFoundException e){
+        }catch(FileNotFoundException e){ ////TODO: comprobar que los crea si no existe
             System.out.println("No se ha podido crear el archivo de configuración.");
             return false;
         }catch(IOException e){
@@ -88,9 +88,45 @@ public class Balneario implements Serializable{
         return null;
     }
     
+    //TODO: todas estas probablemente podríamos buscar un patrón para reutilizar el código. De momento lo copio y luego ya limpiaremos
+    public Servicio buscarServicio(int idServicio){
+        for (Servicio s: servicios){
+            if (s.getCodigo() == idServicio){
+                return s;
+            }
+        }
+        return null;
+    }
     
-        //Getters y Setters
+    public Reserva buscarReserva(int idReserva){
+        for (Reserva r: reservas){
+            if (r.getNumReserva() == idReserva){
+                return r;
+            }
+        }
+        return null;
+    }
     
+    public Cliente buscarCliente(String idCliente){
+        for (Cliente c: clientes){
+            if (c.getDni().compareToIgnoreCase(idCliente) == 0){
+                return c;
+            }
+        }
+        return null;
+    }
+    
+    public Factura buscarFacura(int numero){
+        for (Factura f: facturas){
+            if (Integer.parseInt(f.getCodigo()) == numero){
+                return f;
+            }
+        }
+        return null;
+    }
+    
+    
+    //Getters y Setters    
     public static Balneario getInstancia(){
         if(instancia == null){
             instancia = new Balneario();
