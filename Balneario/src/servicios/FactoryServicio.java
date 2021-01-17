@@ -8,20 +8,22 @@ import java.io.*;
  * @author Ro
  */
 
-//TODO: luego implemento la clase abstracta Factoria y hago todo el tinglado para enazar las factorias individuales,
-//porque basta con meterle el ID que sea en cada caso. Se le puede incluso pasar un String y procesarlo interiormente en cada caso
+//TODO: luego implemento la clase abstracta Factoria y hago todo el tinglado para enlazar las factorias individuales,
+//porque basta con meterle el ID que sea en cada caso. Se le puede incluso pasar un String y procesarlo interiormente según dependa
 public class FactoryServicio {
     
     public static Servicio getServicio(int idServicio){
         String descripcion = " ";
         float coste = 0f;
         boolean flag = true;
+        BufferedReader br;
+        Scanner sc;
         
         System.out.println("Introduce una descripción del servicio:\n");             
         do {
             try {
                 //TODO problemas de codificación al meterle caracters no ASCII. Arreglar.
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in),1);
+                br = new BufferedReader(new InputStreamReader(System.in),1);
                 descripcion = br.readLine();
                 flag = false;
             }
@@ -34,7 +36,7 @@ public class FactoryServicio {
         flag = true;
         do{
             try{
-                Scanner sc = new Scanner(System.in);
+                sc = new Scanner(System.in);
                 coste = sc.nextFloat();
                 flag = false;
             }catch(Exception e){

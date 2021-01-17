@@ -32,11 +32,12 @@ public class Servicio implements Serializable{
     public static int pedirId(){
         int id = 0;
         boolean flag = true;
+        Scanner sc;
         
         do{
-            System.out.println("Introduce el código del servicio deseado: ");
+            System.out.println("Introduce el código del servicio: ");
             try{
-                Scanner sc = new Scanner(System.in);
+                sc = new Scanner(System.in);
                 id = sc.nextInt();
                 
                 flag = false;               

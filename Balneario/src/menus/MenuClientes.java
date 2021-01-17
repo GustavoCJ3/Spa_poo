@@ -1,6 +1,9 @@
 package menus;
 
 import clientes.Cliente;
+import clientes.FactoryCliente;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 /**
  *
@@ -20,33 +23,40 @@ public class MenuClientes extends Menu{
     
     private void listaClientes(){
         for(Cliente c: getBalneario().getClientes()){
-            System.out.println("" + c.infoCliente() +"\n");
+            System.out.println(c.infoCliente());
         }
     }
     
     private void listaClientes(String dni){
         for(Cliente c: getBalneario().getClientes()){
-            if (c.getDni() == dni) {
-                System.out.println("" + c.infoCliente() +"\n");
+            if (c.getDni().equalsIgnoreCase(dni)) {
+                System.out.println(c.infoCliente());
                 
                 return; //Si el cliente existe
             }
         }
+        System.out.println("No existe ningún cliente con el DNI indicado.\n");
     }
     
-    private void agregarCliente(String dni, String nombreApellidos, String telefonoMovil){
-        //Comprobamos que el DNI no esté ya en el sistema
+    private void agregarCliente(){        
+        String idCliente;
         
+        //System.out.println("Introduce el DNI del cliente:\n"); //Ya lo pide Cliente.pedirId
+        idCliente = Cliente.pedirId();
+        
+        //Comprobamos que el DNI no esté ya en el sistema        
         for(Cliente c: getBalneario().getClientes()){
-            if (c.getDni() == dni) {
+            if (c.getDni().equalsIgnoreCase(idCliente)) {
+                System.out.println("El DNI indicado ya está registrado en el sistema.\n");
                 return;
             } 
         }
         
-        Cliente c = new Cliente(dni, nombreApellidos, telefonoMovil);
-        
-        getBalneario().getClientes().add(c);
+        getBalneario().getClientes().add(FactoryCliente.getCliente(idCliente));
+        System.out.println("Cliente añadido.\n");
     }
+    
+    //No se pide funcionalidad para eliminación de clientes
     
     @Override
     public void opciones(byte respuesta){
@@ -55,10 +65,10 @@ public class MenuClientes extends Menu{
                 listaClientes();
                 break;
             case 2:
-                listaClientes();
+                listaClientes(Cliente.pedirId());
                 break;
             case 3:
-                //agregarCliente();
+                agregarCliente();
                 break;
             case 4:
                 getBalneario().guardarDatos();
