@@ -24,30 +24,28 @@ public class MenuClientes extends Menu{
         }
     }
     
-    private int listaClientes(String dni){
-        //TODO: ésta y otras funciones similares podría ponerlas como métodos en Balneario, igual que ha hecho Gustavo. ya mañana
+    private void listaClientes(String dni){
         for(Cliente c: getBalneario().getClientes()){
             if (c.getDni() == dni) {
                 c.infoCliente();
                 
-                return Integer.parseInt(dni); //Si el cliente existe
+                return; //Si el cliente existe
             }
         }
-        return -1; //TODO
     }
     
-    private int agregarCliente(String dni, String nombreApellidos, String telefonoMovil){
+    private void agregarCliente(String dni, String nombreApellidos, String telefonoMovil){
         //Comprobamos que el DNI no esté ya en el sistema
+        
         for(Cliente c: getBalneario().getClientes()){
             if (c.getDni() == dni) {
-                return -1; //TODO habría que meter un enum con las constantes. Ya mañana.
+                return;
             } 
         }
         
         Cliente c = new Cliente(dni, nombreApellidos, telefonoMovil);
         
         getBalneario().getClientes().add(c);
-        return getBalneario().getServicios().indexOf(c); //devolvemos el índice del objeto insertado
     }
     
     @Override

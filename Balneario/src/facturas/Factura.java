@@ -38,7 +38,6 @@ public class Factura implements Serializable{
     }
     
     //Getters y Setters
-    //TODO: generar código automáticamente para los que hagan falta.
     public String getCodigo() {
         return codigo;
     }

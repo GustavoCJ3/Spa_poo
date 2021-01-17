@@ -7,9 +7,6 @@ import facturas.Factura;
  * @author maxpi
  */
 public class MenuFacturas extends Menu{
-    //tratarlo como int a la hora de ir generando ids únicos, y luego convertir a String para inserción en la clase
-    private static int idFactura = 0;
-    
     
     public MenuFacturas(){
         super("1. Listado de todas las facturas\n"
@@ -27,20 +24,20 @@ public class MenuFacturas extends Menu{
         }
     }
     
-    private int listaFacturas(String codigo){
+    private void listaFacturas(String codigo){
         //TODO: String listaTotalReservas = (bucle para listar) //Esperar esto a ver si podemos usar la misma estrategia que para el composite de reservas
         for(Factura f: getBalneario().getFacturas()){
-            if (f.getCodigo() == codigo) {
+            if (f.getCodigo().compareTo(codigo) == 0) {
                 System.out.println("\nCódigo de factura: " + codigo
                     + "\nInformación del cliente: " + f.getCliente().infoCliente()
                     //TODO: Añadir listado de las reservas. Esperar a ver qué pasa con los composites
                     + "\nCoste total: " + f.getCosteTotal()
                     + "\nFecha de facturación: " + f.getFechaFactura());
                 
-                return Integer.parseInt(codigo); //si la factura indicada existe
+                return;
             }
         }
-        return -1; //TODO
+        return;
     }
     
     private void generarFactura(){

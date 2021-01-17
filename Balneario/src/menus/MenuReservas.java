@@ -7,7 +7,7 @@ import reservas.Reserva;
  * @author maxpi
  */
 public class MenuReservas extends Menu{
-    private static int idReservas = 0;
+    private final int ERROR = -1;
     
     public MenuReservas(){
         super("1. Listado de todas las reservas\n"
@@ -35,7 +35,7 @@ public class MenuReservas extends Menu{
             return numReserva;
             }
         }
-        return -1; //TODO luego habría que reemplazar los -1 puestos a pelo por constantes.
+        return ERROR;
     }
     
     private void agregarReserva(){
@@ -66,10 +66,10 @@ public class MenuReservas extends Menu{
             if(r.getNumReserva() == numReserva) {
                 int i = getBalneario().getReservas().indexOf(r);
                 getBalneario().getReservas().remove(r);
-                return i; //TODO //devolvemos el índice en el que estaba el objeto eliminado
+                return i;
             }
         }
-        return -1; //TODO //si no se ha podido eliminar  
+        return ERROR;
     }
     
     @Override

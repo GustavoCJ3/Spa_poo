@@ -1,6 +1,7 @@
 package clientes;
 
 import java.io.Serializable;
+import java.util.Scanner;
 
 /**
  *
@@ -29,6 +30,24 @@ public class Cliente implements Serializable{
                 + "\nTeléfono Móvil: " + telefonoMovil;
     }
 
+    public static int pedirId(){
+        int id = 0;
+        boolean flag = true;
+        
+        do{
+            System.out.println("Introduce el código del servicio deseado: ");
+            try{
+                Scanner sc = new Scanner(System.in);
+                id = sc.nextInt();
+               
+            }catch(Exception e){
+                System.out.println("\nEl valor introducido no es un numero\n");
+            }
+
+        }while(flag);
+        
+        return id;
+    }
     
     //Getters y Setters    
     //TODO: generar código automáticamente para los que hagan falta.

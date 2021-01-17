@@ -1,5 +1,6 @@
 package menus;
 
+import servicios.FactoryServicio;
 import servicios.Servicio;
 
 /**
@@ -7,8 +8,7 @@ import servicios.Servicio;
  * @author maxpi
  */
 public class MenuServicios extends Menu{
-    private static int idServicios = 0;
-    
+  
     public MenuServicios(){
         super("1. Listado de todos los servicios\n"
                     + "2. Información de un servicio\n"
@@ -20,52 +20,54 @@ public class MenuServicios extends Menu{
         
     }
     
-    private void listaServicios(){
+    private void listaServicios() {
         for(Servicio s: getBalneario().getServicios()){
             System.out.println("\n\nCódigo de servicio: " + s.getCodigo()
                     + "." + s.infoServicio());
         }
     }
     
-    private int listaServicios(int codigo){
+    private void listaServicios(int codigo) {
         for(Servicio s: getBalneario().getServicios()){
             if (s.getCodigo() == codigo) {
             System.out.println("Código de servicio: " + codigo
-                    + "." + s.infoServicio());
-            return codigo;
+                    + s.infoServicio());
+            return;
             }
         }
-        return -1; //TODO
     }
     
-    private int agregarServicio(String descripcion, float coste){
+    private void agregarServicio(){
+        int idServicio = 0;
+        String descripcion;
+        float coste;
+        
+        //Generamos automáticamente un Id nuevo y no repetido
         boolean duplicado = false;
         do {        
             for(Servicio s: getBalneario().getServicios()){
-                if(s.getCodigo() == idServicios) {
+                if(s.getCodigo() == idServicio) {
                     duplicado = true;
-                    idServicios++;
+                    idServicio++;
                 } else {
                     duplicado = false;
                 }
             }
-        } while(duplicado);
+        } while(duplicado);        
         
-        Servicio s = new Servicio(idServicios, descripcion, coste);
-        
-        getBalneario().getServicios().add(s);
-        return getBalneario().getServicios().indexOf(s); //devolvemos el índice del objeto insertado
+        getBalneario().getServicios().add(FactoryServicio.getServicio(idServicio));
+        System.out.println("Servicio añadido.");
+
     }
     
-    private int eliminarServicio(int codigo){
+    private void eliminarServicio(int id){     
         for(Servicio s: getBalneario().getServicios()){
-            if(s.getCodigo() == codigo) {
+            if(s.getCodigo() == id) {
                 int i = getBalneario().getServicios().indexOf(s);
                 getBalneario().getServicios().remove(s);
-                return i; //devolvemos el índice en el que estaba el objeto eliminado
             }
         }
-        return -1; //si no se ha podido eliminar
+        return;
     }
     
     @Override
@@ -75,13 +77,13 @@ public class MenuServicios extends Menu{
                 listaServicios();
                 break;
             case 2:
-                listaServicios();
+                listaServicios(Servicio.pedirId());
                 break;
             case 3:
-                //agregarServicio(); //TODO
+                agregarServicio();
                 break;
             case 4:
-                //eliminarServicio(); //TODO
+                eliminarServicio(Servicio.pedirId());
                 break;
             case 5:
                 getBalneario().guardarDatos();
