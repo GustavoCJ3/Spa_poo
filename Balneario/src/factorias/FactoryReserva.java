@@ -1,32 +1,31 @@
-package servicios;
+package factorias;
 
 import java.util.Scanner;
 import java.io.*;
+import reservas.Reserva;
 
 /**
  *
  * @author Ro
  */
-
-//TODO: luego implemento la clase abstracta Factoria y hago todo el tinglado para enlazar las factorias individuales,
-//porque basta con meterle el ID que sea en cada caso. Se le puede incluso pasar un String y procesarlo interiormente según dependa
-public class FactoryServicio {
+public class FactoryReserva implements Factoria<Reserva>{
     
-    public static Servicio getServicio(int idServicio){
+    public Reserva getInstancia(String idReserva){
+        /* //TODO
         String descripcion = " ";
         float coste = 0f;
         boolean flag = true;
-        BufferedReader br;
-        Scanner sc;
+        
+        Scanner sc = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in),1);
         
         System.out.println("Introduce una descripción del servicio:\n");             
         do {
             try {
-                //TODO problemas de codificación al meterle caracters no ASCII. Arreglar.
-                br = new BufferedReader(new InputStreamReader(System.in),1);
                 descripcion = br.readLine();
                 flag = false;
-            } catch (Exception e) {
+            }
+            catch (IOException ex) {
                 System.out.println("Ha ocurrido un error de lectura. Vuelve a intentarlo.");
             }
         } while (flag);     
@@ -34,17 +33,16 @@ public class FactoryServicio {
         System.out.println("Introduce el coste del servicio: \n");     
         flag = true;
         do{
-            try {
-                sc = new Scanner(System.in);
+            try{
                 coste = sc.nextFloat();
                 flag = false;
-            } catch(Exception e) {
+            }catch(NumberFormatException e){
                 System.out.println("\nEl coste del servicio debe ser un dato de tipo float. Inténtalo otra vez:\n");
             }
         }while(flag);        
         
         Servicio servicio = new Servicio(idServicio, descripcion, coste);
-        
-        return servicio;
+        */
+        return null;
     }
 }

@@ -1,6 +1,9 @@
 package facturas;
 
 import clientes.Cliente;
+import static clientes.Cliente.validaDni;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -32,9 +35,30 @@ public class Factura implements Serializable{
     
     //Métodos    
     public String infoFactura(){
-        return "\nCódigo de factura: " + codigo
+        return "Código de factura: " + codigo
                 + "\nDNI de cliente: " + cliente.getDni()
-                + "\nFecha de facturación: " + fechaFactura;
+                + "\nFecha de facturación: " + fechaFactura + "\n";
+    }
+    
+    public static String pedirId(){
+        boolean flag = true;
+        BufferedReader br;
+        String dni = " ";
+        
+        do {
+            System.out.println("Introduce el DNI del cliente: ");
+            try {
+                br = new BufferedReader(new InputStreamReader(System.in),1);
+                dni = br.readLine();
+                
+                flag = false;
+            }
+            catch (Exception e) {
+                System.out.println("Error de formato, vuelve a intentarlo (un DNI consiste de 8 dígitos y una letra).");
+            }
+        } while (flag);         
+        
+        return dni;
     }
     
     //Getters y Setters

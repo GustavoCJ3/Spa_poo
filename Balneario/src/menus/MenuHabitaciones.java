@@ -43,6 +43,7 @@ public class MenuHabitaciones extends Menu{
         int numero = 0;
         float precio = 0;
         boolean flag = true;
+        //FactoryHabitacion fh; //Mira comentarios en FactoryHabitacion
         
         do{
             numero = Habitacion.pedirNumero();
@@ -71,9 +72,9 @@ public class MenuHabitaciones extends Menu{
                 System.out.println("El valor introducido no es un numero");
             }
         }while(flag);
-        
+        //fh = new FactoryHabitacion;
         getBalneario().getHabitaciones().add(FactoryHabitacion.getHabitacion(numero, precio));
-        
+        //getBalneario().getHabitaciones().add(fs.getInstancia(numero));
         System.out.println("Habitación añadida.");
     }
     

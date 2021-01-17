@@ -20,7 +20,7 @@ public class MenuFacturas extends Menu{
     
     private void listaFacturas(){
         for(Factura f: getBalneario().getFacturas()){
-            f.infoFactura();
+            System.out.println(f.infoFactura());
         }
     }
     
@@ -28,11 +28,11 @@ public class MenuFacturas extends Menu{
         //TODO: String listaTotalReservas = (bucle para listar) //Esperar esto a ver si podemos usar la misma estrategia que para el composite de reservas
         for(Factura f: getBalneario().getFacturas()){
             if (f.getCodigo().compareTo(codigo) == 0) {
-                System.out.println("\nCódigo de factura: " + codigo
+                System.out.println("Código de factura: " + codigo
                     + "\nInformación del cliente: " + f.getCliente().infoCliente()
                     //TODO: Añadir listado de las reservas. Esperar a ver qué pasa con los composites
                     + "\nCoste total: " + f.getCosteTotal()
-                    + "\nFecha de facturación: " + f.getFechaFactura());
+                    + "\nFecha de facturación: " + f.getFechaFactura() + "\n");
                 
                 return;
             }
@@ -60,10 +60,10 @@ public class MenuFacturas extends Menu{
                 listaFacturas();
                 break;
             case 2:
-                listaFacturas();
+                listaFacturas(Factura.pedirId());
                 break;
             case 3:
-                //generarFactura();
+                generarFactura();
                 break;
             case 4:
                 getBalneario().guardarDatos();

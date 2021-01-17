@@ -1,7 +1,7 @@
 package menus;
 
 import clientes.Cliente;
-import clientes.FactoryCliente;
+import factorias.FactoryCliente;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -40,6 +40,7 @@ public class MenuClientes extends Menu{
     
     private void agregarCliente(){        
         String idCliente;
+        FactoryCliente fc;
         
         //System.out.println("Introduce el DNI del cliente:\n"); //Ya lo pide Cliente.pedirId
         idCliente = Cliente.pedirId();
@@ -52,7 +53,8 @@ public class MenuClientes extends Menu{
             } 
         }
         
-        getBalneario().getClientes().add(FactoryCliente.getCliente(idCliente));
+        fc = new FactoryCliente();
+        getBalneario().getClientes().add(fc.getInstancia(idCliente));
         System.out.println("Cliente añadido.\n");
     }
     

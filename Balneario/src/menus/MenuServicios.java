@@ -1,6 +1,6 @@
 package menus;
 
-import servicios.FactoryServicio;
+import factorias.FactoryServicio;
 import servicios.Servicio;
 
 /**
@@ -40,6 +40,7 @@ public class MenuServicios extends Menu{
         int idServicio = 0;
         String descripcion;
         float coste;
+        FactoryServicio fs;
         
         //Generamos automáticamente un Id nuevo y no repetido
         boolean duplicado = false;
@@ -54,7 +55,8 @@ public class MenuServicios extends Menu{
             }
         } while(duplicado);        
         
-        getBalneario().getServicios().add(FactoryServicio.getServicio(idServicio));
+        fs = new FactoryServicio(); //TODO ver si se pudiera hacer esto de modo estático para ahorrar tneer que instanciar la factoría
+        getBalneario().getServicios().add(fs.getInstancia(Integer.toString(idServicio)));
         System.out.println("Servicio añadido.\n");
 
     }

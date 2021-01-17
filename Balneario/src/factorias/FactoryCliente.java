@@ -1,17 +1,18 @@
-package clientes;
+package factorias;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
+import clientes.Cliente;
 import clientes.Cliente;
 
 /**
  *
  * @author Ro
  */
-public class FactoryCliente {
+public class FactoryCliente implements Factoria<Cliente>{
     
-    public static Cliente getCliente(String idCliente){
+    public Cliente getInstancia(String idCliente){
         String nombreApellidos = " ";
         String telefonoMovil = " ";
         boolean flag = true;

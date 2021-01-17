@@ -6,8 +6,16 @@ import java.util.Scanner;
  *
  * @author maxpi
  */
-public class FactoryHabitacion {
+public class FactoryHabitacion { //implements Factoria<Habitacion>
     
+    //TODO
+    //No he cambiado nada de lo tuyo, pero podríamos hacer las factorías implementando el interfaz Factoria para
+    //que cuadre mejor con el esquema que él nos ha pasado (y cambiar getHabitacion() por getInstancia(); 
+    //así como instanciar la factoría antes de usar su getInstancia())
+    //Había que cambiar aquí el tipo de dato de entrada de numero a String (luego se hace un parse y listo), y que pidas el precio
+    //por teclado dentro del FactoryHabitación en vez de rebirlo como argumento.
+    
+    //public Habitacion getInstancia(String numero){
     public static Habitacion getHabitacion(int numero, float precio){
         boolean flag = true;
         byte respuesta = 0;
