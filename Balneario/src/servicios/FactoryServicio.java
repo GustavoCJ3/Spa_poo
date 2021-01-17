@@ -26,8 +26,7 @@ public class FactoryServicio {
                 br = new BufferedReader(new InputStreamReader(System.in),1);
                 descripcion = br.readLine();
                 flag = false;
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println("Ha ocurrido un error de lectura. Vuelve a intentarlo.");
             }
         } while (flag);     
@@ -35,11 +34,11 @@ public class FactoryServicio {
         System.out.println("Introduce el coste del servicio: \n");     
         flag = true;
         do{
-            try{
+            try {
                 sc = new Scanner(System.in);
                 coste = sc.nextFloat();
                 flag = false;
-            }catch(Exception e){
+            } catch(Exception e) {
                 System.out.println("\nEl coste del servicio debe ser un dato de tipo float. Inténtalo otra vez:\n");
             }
         }while(flag);        

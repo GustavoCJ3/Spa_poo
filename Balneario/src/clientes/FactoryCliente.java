@@ -25,9 +25,8 @@ public class FactoryCliente {
                 nombreApellidos = br.readLine();
                 
                 flag = false;
-            }
-            catch (Exception e) {
-                System.out.println("Ha ocurrido un error de lectura. Vuelve a intentarlo.");
+            } catch (Exception e) {
+                System.out.println("Ha ocurrido un error de lectura. Vuelve a intentarlo.\n");
             }
         } while (flag);     
         
@@ -37,13 +36,19 @@ public class FactoryCliente {
                 br = new BufferedReader(new InputStreamReader(System.in),1);
                 telefonoMovil = br.readLine();
                 
-                //TODO validación del móvil
-                
                 flag = false;
+            } catch (Exception e) {
+                System.out.println("Ha ocurrido un error de lectura. Vuelve a intentarlo.\n");
+                
+                flag = true;
             }
-            catch (Exception e) {
-                System.out.println("Ha ocurrido un error de lectura. Vuelve a intentarlo.");
+
+            //Validación teléfono móvil
+            flag = !Cliente.validaMovil(telefonoMovil);
+            if (flag) {
+                System.out.println("Formato incorrecto. El número de móvil debe tener 9 cifras.\n");
             }
+            
         } while (flag);
         
         Cliente cliente = new Cliente(idCliente, nombreApellidos, telefonoMovil);

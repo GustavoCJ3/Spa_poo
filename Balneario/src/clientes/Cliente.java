@@ -71,6 +71,23 @@ public class Cliente implements Serializable{
         return false;
     }
     
+    public static boolean validaMovil(String telefonoMovil) {
+        int telMov;
+        
+        //No vamos a imponer más restricciones que que sea un número de 9 cifras
+        if (telefonoMovil.length() != 9 || telefonoMovil.charAt(0) == '+') {
+            return false;
+        }      
+        
+        try {
+            telMov = Integer.parseUnsignedInt(telefonoMovil);
+        } catch (NumberFormatException e) {
+                return false;
+        }
+        
+        return true;
+    }
+    
     //Getters y Setters    
     //TODO: generar código automáticamente para los que hagan falta.
     public String getNombreApellidos() {
