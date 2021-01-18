@@ -2,11 +2,9 @@ package menus;
 
 import clientes.Cliente;
 import factorias.FactoryCliente;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 /**
- * 
+ * Permite al usuario acceder a las funciones que actúan sobre los clientes.
  * @author Gustavo Cortés Jiménez
  * @author Rodrigo Lázaro Escudero
  */

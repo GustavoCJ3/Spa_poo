@@ -4,7 +4,7 @@ import factorias.FactoryServicio;
 import servicios.Servicio;
 
 /**
- * 
+ * Permite al usuario acceder a las funciones que actúan sobre los servicios.
  * @author Gustavo Cortés Jiménez
  * @author Rodrigo Lázaro Escudero
  */

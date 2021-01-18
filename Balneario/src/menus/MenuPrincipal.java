@@ -2,7 +2,7 @@ package menus;
 import java.util.ArrayList;
 
 /**
- * 
+ * Permite al usuario acceder al resto de menús.
  * @author Gustavo Cortés Jiménez
  * @author Rodrigo Lázaro Escudero
  */
@@ -10,9 +10,6 @@ public class MenuPrincipal extends Menu{
     
     private final ArrayList<Menu> menus = new ArrayList();
     
-    /**
-     *
-     */
     public MenuPrincipal(){
         super("1. Habitaciones\n"
                     + "2. Clientes\n"

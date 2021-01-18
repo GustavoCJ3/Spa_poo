@@ -4,6 +4,7 @@ import balneario.Balneario;
 import java.util.Scanner;
 
 /**
+ * Muestra y gestiona las funciones con las que puede interactuar el usuario.
  * @author Gustavo Cortés Jiménez
  * @author Rodrigo Lázaro Escudero
  */

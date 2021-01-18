@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 
 /**
+ * Permite al usuario acceder a las funciones que actúan sobre las habitaciones.
  * @author Gustavo Cortés Jiménez
  * @author Rodrigo Lázaro Escudero
  */

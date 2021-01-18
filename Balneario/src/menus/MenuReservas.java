@@ -6,7 +6,7 @@ import reservas.ReservaHabitacion;
 import reservas.ReservaSpa;
 
 /**
- * Permite al usuario acceder a las funciones que afectan a las reservas
+ * Permite al usuario acceder a las funciones que actúan sobre las reservas.
  * @author Gustavo Cortés Jiménez
  * @author Rodrigo Lázaro Escudero
  */
@@ -23,6 +23,9 @@ public class MenuReservas extends Menu{
         
     }
     
+    /**
+     * Muestra los datos de todas las reservas guardadas
+     */
     private void listaReservas(){
         if(getBalneario().getReservas().isEmpty()){
             System.out.println("\nNo hay reservas registradas.\n");
@@ -33,6 +36,10 @@ public class MenuReservas extends Menu{
         }
     }
     
+    /**
+     * Muestra los datos de una reserva
+     * @param numReserva El número de la reserva que mostrar
+     */
     private void listaReservas(int numReserva){
         for(Reserva r: getBalneario().getReservas()){
             if (r.getNumReserva() == numReserva) {
@@ -43,6 +50,9 @@ public class MenuReservas extends Menu{
         System.out.println("No existe ninguna reserva con el número indicado.\n");
     }
     
+    /**
+     * Crea y añade una nueva reserva al sistema.
+     */
     private void agregarReserva(){
         int idReserva = 0;
         String descripcion;
@@ -74,6 +84,9 @@ public class MenuReservas extends Menu{
         
     }
     
+    /**
+     * Elimina una reserva almacenada en el sistema
+     */
     private void eliminarReserva(int numReserva){        
         for(Reserva r: getBalneario().getReservas()){
             if(r.getNumReserva() == numReserva) {
