@@ -53,8 +53,6 @@ public class MenuServicios extends Menu{
      */
     private void agregarServicio(){
         int idServicio = 0;
-        String descripcion;
-        float coste;
         FactoryServicio fs;
         
         //Generamos automáticamente un Id nuevo y no repetido
