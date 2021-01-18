@@ -1,5 +1,6 @@
 package reservas;
 
+import clientes.Cliente;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -14,21 +15,24 @@ public abstract class Reserva implements Serializable{
     private int numHabitacion;
     private LocalDate diaInicio;
     private float coste;
-    private int total; //static?
+    private Cliente cliente;
     
     
     //Constructores
-    public Reserva(int numReserva, int numHabitacion, LocalDate diaInicio, float coste, int total) {
+    public Reserva(int numReserva, int numHabitacion, LocalDate diaInicio, float coste, Cliente cliente) {
         this.numReserva = numReserva;
         this.numHabitacion = numHabitacion;
         this.diaInicio = diaInicio;
         this.coste = coste;
-        this.total = total;
+        this.cliente = cliente;
     }
     
     
     //Métodos
     public abstract String infoReserva();
+    public abstract float getCosteTotal();
+    public abstract void agregar(Reserva r);
+    public abstract void eliminar(Reserva r);
     
     
     //Getters y Setters
@@ -46,30 +50,6 @@ public abstract class Reserva implements Serializable{
 
     public float getCoste() {
         return coste;
-    }
-
-    public int getTotal() { //static?
-        return total;
-    }
-    
-    public void setNumReserva(int numReserva) {
-        this.numReserva = numReserva;
-    }
-
-    public void setNumHabitacion(int numHabitacion) {
-        this.numHabitacion = numHabitacion;
-    }
-
-    public void setDiaInicio(LocalDate diaInicio) {
-        this.diaInicio = diaInicio;
-    }
-
-    public void setCoste(float coste) {
-        this.coste = coste;
-    }
-    
-    public void setTotal() { //static?
-        this.total = total;
     }
 
 }

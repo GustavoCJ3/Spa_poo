@@ -89,10 +89,6 @@ public class Cliente implements Serializable{
     }
     
     //Getters y Setters    
-    //TODO: generar código automáticamente para los que hagan falta.
-    public String getNombreApellidos() {
-        return nombreApellidos;
-    }
 
     public String getDni() {
         return dni;

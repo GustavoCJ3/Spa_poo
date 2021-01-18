@@ -51,6 +51,25 @@ public class MenuFacturas extends Menu{
         */
         //Necesito poder obtener el listado de reservas para hacer el cálculo del coste total. Ya mañana.
         
+/*
+        String idCliente;
+        FactoryCliente fc;
+        
+        //System.out.println("Introduce el DNI del cliente:\n"); //Ya lo pide Cliente.pedirId
+        idCliente = Cliente.pedirId();
+        
+        //Comprobamos que el DNI no esté ya en el sistema        
+        for(Cliente c: getBalneario().getClientes()){
+            if (c.getDni().equalsIgnoreCase(idCliente)) {
+                System.out.println("El DNI indicado ya está registrado en el sistema.\n");
+                return;
+            } 
+        }
+        
+        fc = new FactoryCliente();
+        getBalneario().getClientes().add(fc.getInstancia(idCliente));
+        System.out.println("Cliente añadido.\n");
+*/
     }
     
     @Override

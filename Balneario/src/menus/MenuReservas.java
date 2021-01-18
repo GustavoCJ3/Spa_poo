@@ -7,7 +7,6 @@ import reservas.Reserva;
  * @author maxpi
  */
 public class MenuReservas extends Menu{
-    private final int ERROR = -1;
     
     public MenuReservas(){
         super("1. Listado de todas las reservas\n"
@@ -27,49 +26,65 @@ public class MenuReservas extends Menu{
         }  
     }
     
-    private int listaReservas(int numReserva){
+    private void listaReservas(int numReserva){
         for(Reserva r: getBalneario().getReservas()){
             if (r.getNumReserva() == numReserva) {
             System.out.println("Número de reserva: " + numReserva
                     + "." + r.infoReserva());
-            return numReserva;
+            return;
             }
         }
-        return ERROR;
+        return;
     }
     
     private void agregarReserva(){
     /*      //TODO
-    public int agregar() {
+        int idServicio = 0;
+        String descripcion;
+        float coste;
+        FactoryServicio fs;
+        
+        //Generamos automáticamente un Id nuevo y no repetido
         boolean duplicado = false;
         do {        
-            for(Reserva r: reservas){
-                if(r.getNumReserva() == idReservas) {
+            for(Servicio s: getBalneario().getServicios()){
+                if(s.getCodigo() == idServicio) {
                     duplicado = true;
-                    idReservas++;
+                    idServicio++;
                 } else {
                     duplicado = false;
                 }
             }
-        } while(duplicado);
+        } while(duplicado);        
         
-        Reserva r = new Reserva();
-        
-        reservas.add(r);
-        return reservas.indexOf(r); //devolvemos el índice del objeto insertado 
-    }
+        fs = new FactoryServicio(); //TODO ver si se pudiera hacer esto de modo estático para ahorrar tneer que instanciar la factoría
+        getBalneario().getServicios().add(fs.getInstancia(Integer.toString(idServicio)));
+        System.out.println("Servicio añadido.\n");
     */
     }
     
-    private int eliminarReserva(int numReserva){
+    private void eliminarReserva(int numReserva){
         for(Reserva r: getBalneario().getReservas()){
             if(r.getNumReserva() == numReserva) {
                 int i = getBalneario().getReservas().indexOf(r);
                 getBalneario().getReservas().remove(r);
-                return i;
+                return;
             }
         }
-        return ERROR;
+        return;
+        
+        /*
+        for(Servicio s: getBalneario().getServicios()){
+            if(s.getCodigo() == id) {
+                getBalneario().getServicios().remove(s);
+                return;
+            }
+        }
+        System.out.println("No existe ningún servicio con el código indicado.\n");
+        */
+        
+        
+        
     }
     
     @Override

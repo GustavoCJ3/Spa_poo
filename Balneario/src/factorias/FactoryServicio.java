@@ -9,8 +9,6 @@ import servicios.Servicio;
  * @author Ro
  */
 
-//TODO: luego implemento la clase abstracta Factoria y hago todo el tinglado para enlazar las factorias individuales,
-//porque basta con meterle el ID que sea en cada caso. Se le puede incluso pasar un String y procesarlo interiormente según dependa
 public class FactoryServicio implements Factoria<Servicio>{
     
     public Servicio getInstancia(String idServicio){

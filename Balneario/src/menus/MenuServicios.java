@@ -61,7 +61,8 @@ public class MenuServicios extends Menu{
 
     }
     
-    private void eliminarServicio(int id){     
+    private void eliminarServicio(int id){
+        //TODO asegurar integridad estrucutura. No dejará borrar Servicios o Habitaciones si hay Reservas de los mismos.
         for(Servicio s: getBalneario().getServicios()){
             if(s.getCodigo() == id) {
                 getBalneario().getServicios().remove(s);

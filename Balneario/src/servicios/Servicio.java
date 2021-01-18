@@ -55,13 +55,8 @@ public class Servicio implements Serializable{
     public int getCodigo() {
         return codigo;
     }
-
+    
     public String getDescripcion() {
         return descripcion;
     }
-
-    public float getCoste() {
-        return coste;
-    }
-    
 }

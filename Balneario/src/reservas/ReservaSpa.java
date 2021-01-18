@@ -1,5 +1,6 @@
 package reservas;
 
+import clientes.Cliente;
 import servicios.Servicio;
 import java.time.LocalDate;
 
@@ -15,8 +16,8 @@ public class ReservaSpa extends Reserva{
     
     
     //Constructores
-    public ReservaSpa(int numReserva, int numHabitacion, LocalDate diaInicio, float coste, int total, LocalDate diaServicio, Servicio servicio, byte numPersonas){
-        super(numReserva, numHabitacion, diaInicio, coste, total);
+    public ReservaSpa(int numReserva, int numHabitacion, LocalDate diaInicio, float coste, Cliente cliente, LocalDate diaServicio, Servicio servicio, byte numPersonas){
+        super(numReserva, numHabitacion, diaInicio, coste, cliente);
         this.diaServicio = diaServicio;
         this.servicio = servicio;
         this.numPersonas = numPersonas;
@@ -25,13 +26,24 @@ public class ReservaSpa extends Reserva{
     
     //Métodos
     public String infoReserva(){ //TODO: faltan cosas, esto es placeholder
-        return "\nNúmero de habitación: " + getNumHabitacion()
-                + "\nDía de inicio: " + getDiaInicio()
-                + "\nCoste: " + getCoste()
-                + "\nTotal: " + getTotal()
+        return "Identificador de reserva: " + getNumReserva()
+                + "\nCódigo del servicio: " + servicio.getCodigo()
+                + "\nDescripción del servicio: " + servicio.getDescripcion()
+                + "\nCoste: " + getCosteTotal()
                 + "\nDía servicio: " + diaServicio
-                + "\nServicio: " + servicio
-                + "\nNúmero de personas: " + numPersonas;
+                + "\nNúmero de personas: " + numPersonas + "\n";
+    }
+    
+    public float getCosteTotal() {
+        return getCoste();
+    }    
+    
+    public void agregar(Reserva r){
+        System.out.println("Error. Las Reservas de Spa no tienen sub-reservas.\n");
+    }
+    
+    public void eliminar(Reserva r){
+        System.out.println("Error. Las Reservas de Spa no tienen sub-reservas.\n");
     }
     
     //Getters y Setters
@@ -43,20 +55,4 @@ public class ReservaSpa extends Reserva{
         return servicio;
     }
 
-    public byte getNumPersonas() {
-        return numPersonas;
-    }
-
-    public void setDiaServicio(LocalDate diaServicio) {
-        this.diaServicio = diaServicio;
-    }
-
-    public void setServicio(Servicio servicio) {
-        this.servicio = servicio;
-    }
-
-    public void setNumPersonas(byte numPersonas) {
-        this.numPersonas = numPersonas;
-    }
-    
 }
