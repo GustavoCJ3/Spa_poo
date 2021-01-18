@@ -15,6 +15,7 @@ public class ReservaSpa extends Reserva{
     private byte numPersonas;
     
     
+    
     //Constructores
     public ReservaSpa(int numReserva, int numHabitacion, LocalDate diaInicio, float coste, LocalDate diaServicio, Servicio servicio, byte numPersonas){
         super(numReserva, numHabitacion, diaInicio, coste);

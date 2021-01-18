@@ -78,6 +78,7 @@ public class MenuReservas extends Menu{
                 getBalneario().getReservas().remove(r);
                 
                 //TODO eliminar tb de los array propios de cada ReservaHabitacion
+                r.getNumHabitacion();
                 
                 
                 return;

@@ -89,7 +89,8 @@ public class Balneario implements Serializable{
         return null;
     }
     
-    //TODO: todas estas probablemente podríamos buscar un patrón para reutilizar el código. De momento lo copio y luego ya limpiaremos
+    //TODO todas estas probablemente podríamos buscar un patrón para reutilizar el código. De momento lo copio y luego ya limpiaremos
+    //TODO mirar en el código de Rodri dónde se puede reemplazar por estas funciones.
     public Servicio buscarServicio(int idServicio){
         for (Servicio s: servicios){
             if (s.getCodigo() == idServicio){
