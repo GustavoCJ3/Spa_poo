@@ -2,8 +2,9 @@ package habitaciones;
 
 
 /**
- *
- * @author maxpi
+ * Complementa a una Habitación, añadiéndola nueva información.
+ * @author Gustavo Cortés Jiménez
+ * @author Rodrigo Lázaro Escudero
  */
 public class Doble extends DecoradorHabitacion{
     private final boolean banoCompartido;

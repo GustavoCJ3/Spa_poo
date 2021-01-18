@@ -1,8 +1,9 @@
 package habitaciones;
 
 /**
- *
- * @author maxpi
+ * Permite añadir características extra a una habitación
+ * @author Gustavo Cortés Jiménez
+ * @author Rodrigo Lázaro Escudero
  */
 public abstract class DecoradorHabitacion extends Habitacion{
     private final Habitacion habitacion;

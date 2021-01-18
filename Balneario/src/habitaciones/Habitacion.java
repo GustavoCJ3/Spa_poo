@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 /**
- *
- * @author maxpi
+ * Contiene la información y las funciones básicas de una habitación.
+ * @author Gustavo Cortés Jiménez
+ * @author Rodrigo Lázaro Escudero
  */
 public class Habitacion implements Serializable{
     private int numero;
@@ -32,6 +33,11 @@ public class Habitacion implements Serializable{
         this.precio = precio;
     }
     
+    /**
+     * Pide un número de habitación
+     * @return un número de habitación
+     * @post el número debe tener el formato adecuado
+     */
     public static int pedirNumero(){
         int numero = 0;
         boolean flag = true;
@@ -55,6 +61,9 @@ public class Habitacion implements Serializable{
         return numero;
     }
     
+    /**
+     * Muestra la información de la habitación
+     */
     public void infoHabitacion(){
         System.out.println("Habitacion individual");
         System.out.println("Numero de habitación: " + getNumero());
