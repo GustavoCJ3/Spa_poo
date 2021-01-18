@@ -2,6 +2,8 @@ package menus;
 
 import factorias.FactoryReserva;
 import reservas.Reserva;
+import reservas.ReservaHabitacion;
+import reservas.ReservaSpa;
 
 /**
  *
@@ -71,15 +73,22 @@ public class MenuReservas extends Menu{
         
     }
     
-    private void eliminarReserva(int numReserva){
+    private void eliminarReserva(int numReserva){        
         for(Reserva r: getBalneario().getReservas()){
             if(r.getNumReserva() == numReserva) {
-                int i = getBalneario().getReservas().indexOf(r);
+                
+                //Si es una ReservaSpa, eliminar de la lista del padre
+                if (r instanceof ReservaSpa) {
+                    ReservaHabitacion padre = ((ReservaSpa) r).getPadre();
+                    padre.eliminar(r);
+                } else { //Si es una ReservaHabitacion, eliminar todas las reservasSpa que contiene
+                    for (Reserva rs: ((ReservaHabitacion)r).getReservasSpa()) {
+                        getBalneario().getReservas().remove(rs);
+                    }
+                }
+                
+                //Finalmente, eliminar el propio nodo
                 getBalneario().getReservas().remove(r);
-                
-                //TODO eliminar tb de los array propios de cada ReservaHabitacion
-                r.getNumHabitacion();
-                
                 
                 return;
             }
@@ -100,6 +109,7 @@ public class MenuReservas extends Menu{
                 agregarReserva();
                 break;
             case 4:
+                System.out.println("ATENCIÓN: eliminar una reserva de habitación eliminará todos los servicios de Spa asociados a esa reserva.");
                 eliminarReserva(Reserva.pedirId());
                 break;
             case 5:

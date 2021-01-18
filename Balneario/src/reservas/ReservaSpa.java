@@ -13,15 +13,16 @@ public class ReservaSpa extends Reserva{
     private LocalDate diaServicio;
     private Servicio servicio;
     private byte numPersonas;
-    
+    private ReservaHabitacion padre;
     
     
     //Constructores
-    public ReservaSpa(int numReserva, int numHabitacion, LocalDate diaInicio, float coste, LocalDate diaServicio, Servicio servicio, byte numPersonas){
+    public ReservaSpa(int numReserva, int numHabitacion, LocalDate diaInicio, float coste, LocalDate diaServicio, Servicio servicio, byte numPersonas, ReservaHabitacion padre){
         super(numReserva, numHabitacion, diaInicio, coste);
         this.diaServicio = diaServicio;
         this.servicio = servicio;
         this.numPersonas = numPersonas;
+        this.padre = padre;
     }
     
     
@@ -55,6 +56,10 @@ public class ReservaSpa extends Reserva{
 
     public Servicio getServicio() {
         return servicio;
+    }
+
+    public ReservaHabitacion getPadre() {
+        return padre;
     }
 
 }
