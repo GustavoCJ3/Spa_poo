@@ -30,7 +30,7 @@ public class MenuPrincipal extends Menu{
     }
     
     /**
-     * Carga los datos del archivo de configuración, y carga el menú principal
+     * Carga los datos del archivo de configuración, y llama al menú principal
      */
     public void iniciar(){
         getBalneario().cargarDatos();
@@ -45,10 +45,6 @@ public class MenuPrincipal extends Menu{
         System.out.println("Gracias por usar esta aplicación.");
     }
     
-    /**
-     *
-     * @param respuesta
-     */
     @Override
     public void opciones(byte respuesta){
         if(respuesta != 0){
@@ -58,10 +54,6 @@ public class MenuPrincipal extends Menu{
         }
     }
     
-    /**
-     *
-     * @param args
-     */
     public static void main(String[] args) {
         MenuPrincipal menu = new MenuPrincipal();
         

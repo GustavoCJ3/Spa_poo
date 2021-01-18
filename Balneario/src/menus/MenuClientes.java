@@ -6,8 +6,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /**
- *
- * @author maxpi
+ * 
+ * @author Gustavo Cortés Jiménez
+ * @author Rodrigo Lázaro Escudero
  */
 public class MenuClientes extends Menu{
     
@@ -21,6 +22,9 @@ public class MenuClientes extends Menu{
         
     }
     
+    /**
+     * Muestra los datos de todos los clientes guardados
+     */
     private void listaClientes(){
         if(getBalneario().getClientes().isEmpty()){
             System.out.println("\nNo hay clientes registrados.\n");
@@ -31,6 +35,10 @@ public class MenuClientes extends Menu{
         }
     }
     
+    /**
+     * Muestra los datos de un cliente
+     * @param dni El DNI del usuario que mostrar
+     */
     private void listaClientes(String dni){
         for(Cliente c: getBalneario().getClientes()){
             if (c.getDni().equalsIgnoreCase(dni)) {
@@ -42,6 +50,9 @@ public class MenuClientes extends Menu{
         System.out.println("No existe ningún cliente con el DNI indicado.\n");
     }
     
+    /**
+     * Crea y añade a un nuevo cliente al sistema.
+     */
     private void agregarCliente(){        
         String idCliente;
         FactoryCliente fc;

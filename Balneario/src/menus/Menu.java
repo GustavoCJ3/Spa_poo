@@ -38,7 +38,7 @@ public abstract class Menu {
     }
     
     /**
-     * muestra las opciones disponibles, y pide una
+     * muestra las opciones disponibles, y ejecuta una de ellas según la respuesta recibida
      */
     public void menu(){
         byte respuesta = 0;
@@ -69,8 +69,9 @@ public abstract class Menu {
     }
     
     /**
-     *
-     * @param respuesta
+     * Llama a la función correspondiente a la respuesta recibida
+     * @param respuesta la opción elegida por el usuario
+     * @pre respuesta debe estar entre 0 y max
      */
     public abstract void opciones(byte respuesta);
 }
