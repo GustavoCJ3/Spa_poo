@@ -74,4 +74,9 @@ public class ReservaHabitacion extends Reserva{
     public Cliente getCliente() {
         return cliente;
     }
+
+    public LocalDate getDiaFin() {
+        return diaFin;
+    }
+    
 }

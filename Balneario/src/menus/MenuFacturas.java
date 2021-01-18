@@ -1,5 +1,6 @@
 package menus;
 
+import factorias.FactoryFactura;
 import facturas.Factura;
 
 /**
@@ -7,8 +8,7 @@ import facturas.Factura;
  * @author Rodrigo Lázaro Escudero
  */
 public class MenuFacturas extends Menu{
-    
-    
+        
     public MenuFacturas(){
         super("1. Listado de todas las facturas\n"
                     + "2. Información de una factura\n"
@@ -23,8 +23,12 @@ public class MenuFacturas extends Menu{
      * Muestra los datos de todas las facturas guardadas
      */
     private void listaFacturas(){
-        for(Factura f: getBalneario().getFacturas()){
-            System.out.println(f.infoFactura());
+        if(getBalneario().getFacturas().isEmpty()){
+            System.out.println("\nNo hay facturas registradas.\n");
+        }else{   
+            for(Factura f: getBalneario().getFacturas()){
+                System.out.println(f.infoFactura());
+            }
         }
     }
     
@@ -33,54 +37,53 @@ public class MenuFacturas extends Menu{
      * @param codigo El código de la factura que mostrar
      */
     private void listaFacturas(String codigo){
-        //TODO: String listaTotalReservas = (bucle para listar) //Esperar esto a ver si podemos usar la misma estrategia que para el composite de reservas
         for(Factura f: getBalneario().getFacturas()){
-            if (f.getCodigo().compareTo(codigo) == 0) {
+            if (f.getCodigo().equals(codigo)) {
                 System.out.println("Código de factura: " + codigo
                     + "\nInformación del cliente: " + f.getCliente().infoCliente()
-                    //TODO: Añadir listado de las reservas. Esperar a ver qué pasa con los composites
-                    + "\nCoste total: " + f.getCosteTotal()
-                    + "\nFecha de facturación: " + f.getFechaFactura() + "\n");
-                
+                    + "\nListado de reservas: " + f.getReserva().infoReserva()
+                    + "\nCoste total: " + f.getReserva().getCosteTotal()
+                    + "\nFecha de facturación: " + f.getFechaFactura() + "\n");                
                 return;
             }
         }
-        return;
+        System.out.println("No existe ninguna factura con el código indicado.\n");
     }
     
     /**
      * Crea y añade una nueva factura al sistema
      */
     private void generarFactura(){
-        //TODO: hay que controlar que el idFactura sea único (autoincremental vale) y convertirlo a string
-        /*
-        Generar la factura correspondiente dada una habitación con reserva.
-        Sólo se puede facturar si la fecha de facturación coincide o es posterior
-        a la fecha de salida de la reserva de la habitación. A los clientes que ya
-        han ocupado habitaciones del Balneario en el mismo año natural se les
-        aplicará un 5% de descuento.        
-        */
-        //Necesito poder obtener el listado de reservas para hacer el cálculo del coste total. Ya mañana.
+       
+        int idFactura = 0;
+        FactoryFactura ff;
         
-/*
-        String idCliente;
-        FactoryCliente fc;
+        //Generamos automáticamente un Id nuevo y no repetido
+        boolean duplicado = false;
+        do {        
+            for(Factura f: getBalneario().getFacturas()){
+                if(idFactura == Integer.parseInt(f.getCodigo())) {
+                    duplicado = true;
+                    idFactura++;
+                } else {
+                    duplicado = false;
+                }
+            }
+        } while(duplicado);     
         
-        //System.out.println("Introduce el DNI del cliente:\n"); //Ya lo pide Cliente.pedirId
-        idCliente = Cliente.pedirId();
+        //System.out.println(String.format("%08d", idFactura)); //debug
         
-        //Comprobamos que el DNI no esté ya en el sistema        
-        for(Cliente c: getBalneario().getClientes()){
-            if (c.getDni().equalsIgnoreCase(idCliente)) {
-                System.out.println("El DNI indicado ya está registrado en el sistema.\n");
-                return;
-            } 
+        ff = new FactoryFactura();
+        
+        Factura factura = ff.getInstancia(String.format("%08d", idFactura));
+        if (factura != null) {
+            getBalneario().getFacturas().add(factura);
+            System.out.println("Factura generada con éxito.\n");
+        } else {
+            System.out.println("La factura NO se ha creado. Por favor verifique que las habitaciones, clientes y reservas indicadas"
+                    + "estén registradas previamente en el sistema.\n");
         }
-        
-        fc = new FactoryCliente();
-        getBalneario().getClientes().add(fc.getInstancia(idCliente));
-        System.out.println("Cliente añadido.\n");
-*/
+
     }
     
     @Override
