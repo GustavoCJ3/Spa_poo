@@ -21,21 +21,22 @@ public class MenuReservas extends Menu{
     }
     
     private void listaReservas(){
-        for(Reserva r: getBalneario().getReservas()){
-            System.out.println("\n\nNúmero de reserva: " + r.getNumReserva()
-                    + "." + r.infoReserva());
-        }  
+        if(getBalneario().getReservas().isEmpty()){
+            System.out.println("\nNo hay reservas registradas.\n");
+        }else{   
+            for(Reserva r: getBalneario().getReservas()){
+                System.out.println(r.infoReserva());
+            }  
+        }
     }
     
     private void listaReservas(int numReserva){
         for(Reserva r: getBalneario().getReservas()){
             if (r.getNumReserva() == numReserva) {
-            System.out.println("Número de reserva: " + numReserva
-                    + "." + r.infoReserva());
+                System.out.println(r.infoReserva());
             return;
             }
         }
-        return;
     }
     
     private void agregarReserva(){
@@ -57,10 +58,17 @@ public class MenuReservas extends Menu{
             }
         } while(duplicado);        
         
+        //TODO comprobar que fr.getInstancia(Integer.toString(idReserva), getBalneario() no devuelva null
         fr = new FactoryReserva();
-        getBalneario().getReservas().add(fr.getInstancia(Integer.toString(idReserva), getBalneario()));
-        System.out.println("Reserva añadida.\n");
-
+        Reserva reserva = fr.getInstancia(Integer.toString(idReserva), getBalneario());
+        if (reserva != null) {
+            getBalneario().getReservas().add(reserva);
+            System.out.println("Reserva añadida.\n");
+        } else {
+            System.out.println("La reserva NO se ha creado. Por favor verifique que las habitaciones, clientes y servicios necesarios"
+                    + "estén registrados previamente en el sistema.\n");
+        }
+        
     }
     
     private void eliminarReserva(int numReserva){

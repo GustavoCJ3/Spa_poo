@@ -20,6 +20,7 @@ public class FactoryReserva implements Factoria<Reserva>{
     
     public Reserva getInstancia(String idReserva, Balneario balneario){
         
+        final int MAX_PERSONAS = 10;
         int numReserva = Integer.parseInt(idReserva);
         int numHabitacion;
         LocalDate diaInicio = LocalDate.now();
@@ -30,8 +31,7 @@ public class FactoryReserva implements Factoria<Reserva>{
         Scanner sc;
         byte opcion = 0;
         
-        numHabitacion = Habitacion.pedirNumero();
-        
+        numHabitacion = Habitacion.pedirNumero();        
         //Comprobamos que la habitación especificada esté registrada en el sistema
         flag = false;
         for(Habitacion h: balneario.getHabitaciones()){
@@ -53,7 +53,7 @@ public class FactoryReserva implements Factoria<Reserva>{
                 diaInicio = LocalDate.parse(br.readLine());
                 flag = false;
             } catch(Exception e) {
-                System.out.println("\nError. El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25).\n");
+                System.out.println("\nError, fecha inválida. El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25).\n");
             }
         }while(flag);
         
@@ -78,13 +78,77 @@ public class FactoryReserva implements Factoria<Reserva>{
         //Generamos el tipo de Reserva solicitado
         if (opcion == 2) {
 
-            LocalDate diaServicio;
-            Servicio servicio;
-            byte numPersonas;
+            Servicio servicio = null;
+            ReservaHabitacion reservaPadre = null;
+            int codigoServicio;
+            LocalDate diaServicio = LocalDate.now();
+            byte numPersonas = 0;
+            
+            //Comprobar lo primero de todo que la habitación indicada está reservada.
+            flag = false;
+            for (Reserva r : balneario.getReservas()) {
+                //Comprobamos que el número de habitación coincida y que la clase sea ReservaHabitacion
+                if ((r.getNumHabitacion() == numHabitacion) && (r instanceof ReservaHabitacion)){
+                    reservaPadre = (ReservaHabitacion)r;
+                                        
+                    flag = true;
+                }
+            }        
+            if (!flag) {
+                System.out.println("No se puede reservar servicio de spa para esa habitación porque dicha habitación no está reservada por nadie.\n");
 
-        
-        
-            ReservaSpa reserva = new ReservaSpa(numReserva, numHabitacion, diaInicio, coste, diaServicio, servicio, numPersonas);                    
+                return null;
+            }  
+            
+            //Pedir código servicio y comprobar si existe
+            codigoServicio = Servicio.pedirId();
+            flag = false;
+            for(Servicio s: balneario.getServicios()){
+                if (s.getCodigo() == codigoServicio) {
+                    servicio = s;
+                    flag = true;
+                }
+            }        
+            if (!flag) {
+                System.out.println("El servicio indicado no está registrado en el sistema. Regístrelo primero antes de usarlo.\n");
+
+                return null;
+            }  
+            
+            //Pedir fecha del servicio
+            System.out.println("Introduce la fecha para reservar servicio de spa (formato aaaa-mm-dd): \n");     
+            do{
+                try {
+                    br = new BufferedReader(new InputStreamReader(System.in),1);
+                    diaServicio = LocalDate.parse(br.readLine());
+                    flag = false;
+                } catch(Exception e) {
+                    System.out.println("\nError, fecha inválida. El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25).\n");
+                }
+            }while(flag);
+            //TODO comprobaciones adicionales de solapamientos de fechas, servicios, etc.
+
+            //Pedir número de personas
+            System.out.println("Introduce el número de personas que atenderán al servicio: \n");
+            do{
+                try{
+                    sc = new Scanner(System.in);
+                    numPersonas = sc.nextByte();
+
+                    if ( (numPersonas < 1) || (numPersonas > MAX_PERSONAS)){
+                        throw new Exception();
+                    }else{
+                        flag = false;
+                    }
+                }catch(Exception e){
+                    System.out.println("\nPor favor, introduce un número entre 1 y " + MAX_PERSONAS + " (inclusive).\n");
+                }
+            }while(flag);
+            
+            ReservaSpa reserva = new ReservaSpa(numReserva, numHabitacion, diaInicio, servicio.getCoste(), diaServicio, servicio, numPersonas);
+            
+            //Referenciamos la ReservaSpa creada en su ReservaHabitacion padre
+            reservaPadre.agregar(reserva);
 
             return (Reserva)reserva;
             
@@ -105,7 +169,7 @@ public class FactoryReserva implements Factoria<Reserva>{
                             diaFin = LocalDate.parse(br.readLine());
                             flag = false;
                         } catch(Exception e) {
-                            System.out.println("\nError. El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25)."
+                            System.out.println("\nError, fecha inválida. El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25)."
                                     + "Además, la fecha de fin de reserva debe ser superior a la fecha de inicio.\n");
                         }
                     }while(flag);

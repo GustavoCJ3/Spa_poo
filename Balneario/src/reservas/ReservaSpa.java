@@ -29,13 +29,14 @@ public class ReservaSpa extends Reserva{
         return "Identificador de reserva: " + getNumReserva()
                 + "\nCódigo del servicio: " + servicio.getCodigo()
                 + "\nDescripción del servicio: " + servicio.getDescripcion()
-                + "\nCoste: " + getCosteTotal()
+                + "\nCoste base del servicio: " + getCoste()
+                + "\nCoste total del servicio (coste base * número de personas): " + getCosteTotal()
                 + "\nDía servicio: " + diaServicio
                 + "\nNúmero de personas: " + numPersonas + "\n";
     }
     
     public float getCosteTotal() {
-        return getCoste();
+        return getCoste() * numPersonas;
     }    
     
     public void agregar(Reserva r){

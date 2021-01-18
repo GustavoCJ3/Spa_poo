@@ -21,8 +21,12 @@ public class MenuServicios extends Menu{
     }
     
     private void listaServicios() {
-        for(Servicio s: getBalneario().getServicios()){
-            System.out.println(s.infoServicio());
+        if(getBalneario().getServicios().isEmpty()){
+            System.out.println("\nNo hay servicios registrados.\n");
+        }else{  
+            for(Servicio s: getBalneario().getServicios()){
+                System.out.println(s.infoServicio());
+            }
         }
     }
     

@@ -24,22 +24,22 @@ public class ReservaHabitacion extends Reserva{
     
     //Métodos
     public String infoReserva(){
-        String concatReservasSpa = "";
+        String concatReservasSpa = "\n";
         for(Reserva rs: reservasSpa){
             concatReservasSpa = concatReservasSpa + rs.infoReserva();
         }
         
         return "Identificador de reserva: " + getNumReserva()
-                + "Número de habitación: " + getNumHabitacion()
+                + "\nNúmero de habitación: " + getNumHabitacion()
                 + "\nDía de inicio: " + getDiaInicio()
                 + "\nCoste de la habitación: " + getCoste()
-                + "\nCoste total de servicios: " + getCosteTotal()
+                + "\nCoste total de habitación + servicios: " + getCosteTotal()
                 + "\nDía de fin de reserva: " + diaFin
-                + concatReservasSpa;
+                + "\nServicios de Spa asociados: " + concatReservasSpa;
     }
     
     public float getCosteTotal() {
-        float total = 0;
+        float total = getCoste();
         for(Reserva rs: reservasSpa){
             total = total + rs.getCoste();
         }

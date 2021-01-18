@@ -22,8 +22,12 @@ public class MenuClientes extends Menu{
     }
     
     private void listaClientes(){
-        for(Cliente c: getBalneario().getClientes()){
-            System.out.println(c.infoCliente());
+        if(getBalneario().getClientes().isEmpty()){
+            System.out.println("\nNo hay clientes registrados.\n");
+        }else{  
+            for(Cliente c: getBalneario().getClientes()){
+                System.out.println(c.infoCliente());
+            }
         }
     }
     

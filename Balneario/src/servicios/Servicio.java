@@ -59,4 +59,9 @@ public class Servicio implements Serializable{
     public String getDescripcion() {
         return descripcion;
     }
+
+    public float getCoste() {
+        return coste;
+    }
+    
 }
