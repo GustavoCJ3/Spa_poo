@@ -37,6 +37,7 @@ public class MenuReservas extends Menu{
             return;
             }
         }
+        System.out.println("No existe ninguna reserva con el número indicado.\n");
     }
     
     private void agregarReserva(){
@@ -58,9 +59,8 @@ public class MenuReservas extends Menu{
             }
         } while(duplicado);        
         
-        //TODO comprobar que fr.getInstancia(Integer.toString(idReserva), getBalneario() no devuelva null
         fr = new FactoryReserva();
-        Reserva reserva = fr.getInstancia(Integer.toString(idReserva), getBalneario());
+        Reserva reserva = fr.getInstancia(Integer.toString(idReserva));
         if (reserva != null) {
             getBalneario().getReservas().add(reserva);
             System.out.println("Reserva añadida.\n");
@@ -76,25 +76,14 @@ public class MenuReservas extends Menu{
             if(r.getNumReserva() == numReserva) {
                 int i = getBalneario().getReservas().indexOf(r);
                 getBalneario().getReservas().remove(r);
+                
+                //TODO eliminar tb de los array propios de cada ReservaHabitacion
+                
+                
                 return;
             }
         }
-        return;
-        
-        //TODO eliminar tb de los array propios de cada ReservaHabitacion
-        
-        /*
-        for(Servicio s: getBalneario().getServicios()){
-            if(s.getCodigo() == id) {
-                getBalneario().getServicios().remove(s);
-                return;
-            }
-        }
-        System.out.println("No existe ningún servicio con el código indicado.\n");
-        */
-        
-        
-        
+        System.out.println("No existe ninguna reserva con el código indicado.\n");
     }
     
     @Override
@@ -104,13 +93,13 @@ public class MenuReservas extends Menu{
                 listaReservas();
                 break;
             case 2:
-                //listaReservas(Reserva.pedirId());
+                listaReservas(Reserva.pedirId());
                 break;
             case 3:
                 agregarReserva();
                 break;
             case 4:
-                //eliminarReserva(); //TODO
+                eliminarReserva(Reserva.pedirId());
                 break;
             case 5:
                 getBalneario().guardarDatos();

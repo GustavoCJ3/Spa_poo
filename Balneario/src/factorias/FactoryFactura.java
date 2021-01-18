@@ -9,7 +9,7 @@ import facturas.Factura;
  */
 public class FactoryFactura implements Factoria<Factura>{
 
-    public Factura getInstancia(String id, Balneario balneario) {
+    public Factura getInstancia(String id) {
         return null; //TODO
     }
     

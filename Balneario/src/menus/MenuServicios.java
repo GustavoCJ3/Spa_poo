@@ -60,7 +60,7 @@ public class MenuServicios extends Menu{
         } while(duplicado);        
         
         fs = new FactoryServicio();
-        getBalneario().getServicios().add(fs.getInstancia(Integer.toString(idServicio), getBalneario()));
+        getBalneario().getServicios().add(fs.getInstancia(Integer.toString(idServicio)));
         System.out.println("Servicio añadido.\n");
 
     }

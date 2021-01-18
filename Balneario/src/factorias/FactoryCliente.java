@@ -13,7 +13,7 @@ import clientes.Cliente;
  */
 public class FactoryCliente implements Factoria<Cliente>{
     
-    public Cliente getInstancia(String idCliente, Balneario balneario){
+    public Cliente getInstancia(String idCliente){
         String nombreApellidos = " ";
         String telefonoMovil = " ";
         boolean flag = true;

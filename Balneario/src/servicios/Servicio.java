@@ -42,7 +42,7 @@ public class Servicio implements Serializable{
                 
                 flag = false;               
             }catch(Exception e){
-                System.out.println("\nEl valor introducido no es un numero\n");
+                System.out.println("\nEl valor introducido debe ser un número.\n");
             }
 
         }while(flag);

@@ -69,7 +69,7 @@ public class MenuClientes extends Menu{
         }
         
         fc = new FactoryCliente();
-        getBalneario().getClientes().add(fc.getInstancia(idCliente, getBalneario()));
+        getBalneario().getClientes().add(fc.getInstancia(idCliente));
         System.out.println("Cliente añadido.\n");
     }
     

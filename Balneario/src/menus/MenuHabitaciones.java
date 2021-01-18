@@ -54,7 +54,7 @@ public class MenuHabitaciones extends Menu{
             }
         }while(flag);
         
-        Habitacion fh = new FactoryHabitacion().getInstancia(String.valueOf(numero), Balneario.getInstancia());
+        Habitacion fh = new FactoryHabitacion().getInstancia(String.valueOf(numero));
         getBalneario().getHabitaciones().add(fh);
         
         System.out.println("Habitación añadida.");

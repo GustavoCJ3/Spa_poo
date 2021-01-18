@@ -18,7 +18,7 @@ import servicios.Servicio;
 //TODO comprobaciones adicionales de solapamientos de fechas
 public class FactoryReserva implements Factoria<Reserva>{
     
-    public Reserva getInstancia(String idReserva, Balneario balneario){
+    public Reserva getInstancia(String idReserva){
         
         final int MAX_PERSONAS = 10;
         int numReserva = Integer.parseInt(idReserva);
@@ -34,7 +34,7 @@ public class FactoryReserva implements Factoria<Reserva>{
         numHabitacion = Habitacion.pedirNumero();        
         //Comprobamos que la habitación especificada esté registrada en el sistema
         flag = false;
-        for(Habitacion h: balneario.getHabitaciones()){
+        for(Habitacion h: Balneario.getInstancia().getHabitaciones()){
             if (h.getNumero() == numHabitacion) {
                 flag = true;
             }
@@ -86,7 +86,7 @@ public class FactoryReserva implements Factoria<Reserva>{
             
             //Comprobar lo primero de todo que la habitación indicada está reservada.
             flag = false;
-            for (Reserva r : balneario.getReservas()) {
+            for (Reserva r : Balneario.getInstancia().getReservas()) {
                 //Comprobamos que el número de habitación coincida y que la clase sea ReservaHabitacion
                 if ((r.getNumHabitacion() == numHabitacion) && (r instanceof ReservaHabitacion)){
                     reservaPadre = (ReservaHabitacion)r;
@@ -103,7 +103,7 @@ public class FactoryReserva implements Factoria<Reserva>{
             //Pedir código servicio y comprobar si existe
             codigoServicio = Servicio.pedirId();
             flag = false;
-            for(Servicio s: balneario.getServicios()){
+            for(Servicio s: Balneario.getInstancia().getServicios()){
                 if (s.getCodigo() == codigoServicio) {
                     servicio = s;
                     flag = true;
@@ -159,7 +159,7 @@ public class FactoryReserva implements Factoria<Reserva>{
             LocalDate diaFin = LocalDate.now();
 
             //Comprobamos que el DNI esté registrado en el sistema        
-            for(Cliente c: balneario.getClientes()){
+            for(Cliente c: Balneario.getInstancia().getClientes()){
                 if (c.getDni().equalsIgnoreCase(idCliente)) {
                     
                     System.out.println("Introduce la fecha de finalización de la reserva (formato aaaa-mm-dd): \n");     
@@ -175,7 +175,7 @@ public class FactoryReserva implements Factoria<Reserva>{
                     }while(flag);
                     
                     //Buscamos el coste de la habitación
-                    for(Habitacion h: balneario.getHabitaciones()){
+                    for(Habitacion h: Balneario.getInstancia().getHabitaciones()){
                         if (h.getNumero() == numHabitacion) {
                             coste = h.getPrecio();
                         }

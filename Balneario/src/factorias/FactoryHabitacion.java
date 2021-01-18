@@ -20,7 +20,7 @@ public class FactoryHabitacion implements Factoria<Habitacion>{
     //por teclado dentro del FactoryHabitación en vez de rebirlo como argumento.
     
     @Override
-    public Habitacion getInstancia(String numero, Balneario balneario){
+    public Habitacion getInstancia(String numero){
         float precio = 0;
         boolean flag = true;
         byte respuesta = 0;

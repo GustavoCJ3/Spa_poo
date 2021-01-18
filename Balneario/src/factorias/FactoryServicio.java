@@ -12,7 +12,7 @@ import servicios.Servicio;
 
 public class FactoryServicio implements Factoria<Servicio>{
     
-    public Servicio getInstancia(String idServicio, Balneario balneario){
+    public Servicio getInstancia(String idServicio){
         String descripcion = " ";
         float coste = 0f;
         boolean flag = true;
