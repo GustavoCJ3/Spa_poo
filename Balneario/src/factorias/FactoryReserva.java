@@ -145,7 +145,7 @@ public class FactoryReserva implements Factoria<Reserva>{
                 }
             }while(flag);
             
-            ReservaSpa reserva = new ReservaSpa(numReserva, numHabitacion, diaInicio, servicio.getCoste(), diaServicio, servicio, numPersonas);
+            ReservaSpa reserva = new ReservaSpa(numReserva, numHabitacion, diaInicio, servicio.getCoste(), diaServicio, servicio, numPersonas, reservaPadre);
             
             //Referenciamos la ReservaSpa creada en su ReservaHabitacion padre
             reservaPadre.agregar(reserva);

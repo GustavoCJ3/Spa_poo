@@ -54,11 +54,16 @@ public class ReservaHabitacion extends Reserva{
     }
     
     public void eliminar(Reserva r){
-        //TODO
-        //System.out.println(".\n");
+        reservasSpa.remove(r);
+        System.out.println("Se ha eliminado la Reserva de Spa: " + r.getNumReserva()
+                + " de Reserva de Habitación: " + getNumReserva()
+                + ", con número de habitación: " + getNumHabitacion() + "\n");
     }
     
     
     //Getters y Setters
-   
+    public ArrayList<Reserva> getReservasSpa() {
+        return reservasSpa;
+    }
+    
 }
