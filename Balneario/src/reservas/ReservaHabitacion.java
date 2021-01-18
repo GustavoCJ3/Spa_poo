@@ -70,5 +70,8 @@ public class ReservaHabitacion extends Reserva{
     public ArrayList<Reserva> getReservasSpa() {
         return reservasSpa;
     }
-    
+
+    public Cliente getCliente() {
+        return cliente;
+    }
 }

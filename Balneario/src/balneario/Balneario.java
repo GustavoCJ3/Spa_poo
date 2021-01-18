@@ -11,20 +11,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 /**
- *
- * @author maxpi
+ * Contiene la información principal de la aplicación.
+ * @author Gustavo Cortés Jiménez.
+ * @author Rodrigo Lázaro Escudero.
  */
-public class Balneario implements Serializable{
+public class Balneario{
     private static Balneario instancia;
     private final String NOMBRE_ARCHIVO = "Configuracion.dat";
     private ArrayList<Habitacion> habitaciones= new ArrayList();
-    private ArrayList<Servicio> servicios = new ArrayList<Servicio>();
-    private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
-    private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-    private ArrayList<Factura> facturas = new ArrayList<Factura>();
+    private ArrayList<Servicio> servicios = new ArrayList();
+    private ArrayList<Reserva> reservas = new ArrayList();
+    private ArrayList<Cliente> clientes = new ArrayList();
+    private ArrayList<Factura> facturas = new ArrayList();
     
     
     private Balneario(){}
@@ -34,6 +34,10 @@ public class Balneario implements Serializable{
         throw new CloneNotSupportedException();
     }
     
+    /**
+     * Carga los datos almacenados en el archivo de configuración en la aplicación.
+     * @return false si han ocurrido fallos; si todo ha ido bien, true.
+     */
     public boolean cargarDatos(){
         try{
             FileInputStream in = new FileInputStream(NOMBRE_ARCHIVO);
@@ -56,6 +60,10 @@ public class Balneario implements Serializable{
         return true;
     }
     
+    /**
+     * Guarda los datos de la aplicación en el archivo de configuración.
+     * @return false si han ocurrido fallos; si todo ha ido bien, true.
+     */
     public boolean guardarDatos(){
         try{
             FileOutputStream out = new FileOutputStream(NOMBRE_ARCHIVO);
@@ -68,7 +76,7 @@ public class Balneario implements Serializable{
             oos.flush();
             oos.close();
             out.close();
-        }catch(FileNotFoundException e){ ////TODO: comprobar que los crea si no existe
+        }catch(FileNotFoundException e){
             System.out.println("No se ha podido crear el archivo de configuración.");
             return false;
         }catch(IOException e){
@@ -80,6 +88,11 @@ public class Balneario implements Serializable{
         return true;
     }
     
+    /**
+     * Devuelve la habitación cuyo número se corresponda con el recibido.
+     * @param numero el número de la habitación.
+     * @return la habitación correspondiente; si no, null
+     */
     public Habitacion buscarHabitacion(int numero){
         for (Habitacion h: habitaciones){
             if (h.getNumero() == numero){
