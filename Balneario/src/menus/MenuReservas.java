@@ -6,8 +6,9 @@ import reservas.ReservaHabitacion;
 import reservas.ReservaSpa;
 
 /**
- *
- * @author maxpi
+ * Permite al usuario acceder a las funciones que afectan a las reservas
+ * @author Gustavo Cortés Jiménez
+ * @author Rodrigo Lázaro Escudero
  */
 public class MenuReservas extends Menu{
     

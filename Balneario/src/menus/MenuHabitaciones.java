@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 
 /**
- * 
  * @author Gustavo Cortés Jiménez
  * @author Rodrigo Lázaro Escudero
  */
