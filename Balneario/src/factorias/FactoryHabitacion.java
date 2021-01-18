@@ -1,12 +1,16 @@
-package habitaciones;
+package factorias;
 
+import balneario.Balneario;
+import habitaciones.Doble;
+import habitaciones.Familiar;
+import habitaciones.Habitacion;
 import java.util.Scanner;
 
 /**
  *
  * @author maxpi
  */
-public class FactoryHabitacion { //implements Factoria<Habitacion>
+public class FactoryHabitacion implements Factoria<Habitacion>{ 
     
     //TODO
     //No he cambiado nada de lo tuyo, pero podríamos hacer las factorías implementando el interfaz Factoria para
@@ -15,12 +19,31 @@ public class FactoryHabitacion { //implements Factoria<Habitacion>
     //Había que cambiar aquí el tipo de dato de entrada de numero a String (luego se hace un parse y listo), y que pidas el precio
     //por teclado dentro del FactoryHabitación en vez de rebirlo como argumento.
     
-    //public Habitacion getInstancia(String numero, Balneario balneario){
-    public static Habitacion getHabitacion(int numero, float precio){
+    @Override
+    public Habitacion getInstancia(String numero, Balneario balneario){
+        float precio = 0;
         boolean flag = true;
         byte respuesta = 0;
         
-        Habitacion habit = new Habitacion(numero, precio);
+        System.out.println("Introduce el precio de la habitación (usar coma)");
+        
+        do{
+            flag = true;
+            try{
+                Scanner sc = new Scanner(System.in);
+                precio = sc.nextFloat();
+                
+                if (precio < 0){
+                    System.out.println("El precio tiene que ser superior a 0");
+                }else{
+                    flag = false;
+                }
+            }catch(Exception e){
+                System.out.println("El valor introducido no es un numero");
+            }
+        }while(flag);
+        
+        Habitacion habit = new Habitacion(Integer.valueOf(numero), precio);
         
         System.out.println("Introduce el tipo de habitación:\n"
                 + "1. Habitación individual\n"
