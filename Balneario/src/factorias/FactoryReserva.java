@@ -11,13 +11,16 @@ import reservas.ReservaHabitacion;
 import reservas.ReservaSpa;
 import servicios.Servicio;
 
-/**
- *
- * @author Ro
- */
 //TODO comprobaciones adicionales de solapamientos de fechas
+
+/**
+ * Se encarga del proceso de creación de Reservas
+ * @author Gustavo Cortés Jiménez.
+ * @author Rodrigo Lázaro Escudero.
+ */
 public class FactoryReserva implements Factoria<Reserva>{
     
+    @Override
     public Reserva getInstancia(String idReserva){
         
         final int MAX_PERSONAS = 10;

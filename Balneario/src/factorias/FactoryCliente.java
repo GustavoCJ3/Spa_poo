@@ -1,18 +1,17 @@
 package factorias;
 
-import balneario.Balneario;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Scanner;
-import clientes.Cliente;
 import clientes.Cliente;
 
 /**
- *
- * @author Ro
+ * Se encarga del proceso de creación de Clientes
+ * @author Gustavo Cortés Jiménez.
+ * @author Rodrigo Lázaro Escudero.
  */
 public class FactoryCliente implements Factoria<Cliente>{
     
+    @Override
     public Cliente getInstancia(String idCliente){
         String nombreApellidos = " ";
         String telefonoMovil = " ";
