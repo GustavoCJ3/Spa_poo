@@ -11,13 +11,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 /**
  * Contiene la información principal de la aplicación.
  * @author Gustavo Cortés Jiménez.
  * @author Rodrigo Lázaro Escudero.
  */
-public class Balneario{
+public class Balneario implements Serializable{
     private static Balneario instancia;
     private final String NOMBRE_ARCHIVO = "Configuracion.dat";
     private ArrayList<Habitacion> habitaciones= new ArrayList();
