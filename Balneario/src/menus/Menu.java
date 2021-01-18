@@ -4,7 +4,6 @@ import balneario.Balneario;
 import java.util.Scanner;
 
 /**
- * 
  * @author Gustavo Cortés Jiménez
  * @author Rodrigo Lázaro Escudero
  */
@@ -38,7 +37,7 @@ public abstract class Menu {
     }
     
     /**
-     * muestra las opciones disponibles, y ejecuta una de ellas según la respuesta recibida
+     * Muestra las opciones disponibles, y ejecuta una de ellas según la respuesta recibida
      */
     public void menu(){
         byte respuesta = 0;

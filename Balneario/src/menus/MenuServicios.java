@@ -4,8 +4,9 @@ import factorias.FactoryServicio;
 import servicios.Servicio;
 
 /**
- *
- * @author maxpi
+ * 
+ * @author Gustavo Cortés Jiménez
+ * @author Rodrigo Lázaro Escudero
  */
 public class MenuServicios extends Menu{
   
@@ -20,6 +21,9 @@ public class MenuServicios extends Menu{
         
     }
     
+    /**
+     * Muestra los datos de todos los servicios guardados
+     */
     private void listaServicios() {
         if(getBalneario().getServicios().isEmpty()){
             System.out.println("\nNo hay servicios registrados.\n");
@@ -30,6 +34,10 @@ public class MenuServicios extends Menu{
         }
     }
     
+    /**
+     * Muestra los datos de un servicio
+     * @param codigo El codigo del servicio que mostrar
+     */
     private void listaServicios(int codigo) {        
         for(Servicio s: getBalneario().getServicios()){
             if (s.getCodigo() == codigo) {
@@ -40,6 +48,9 @@ public class MenuServicios extends Menu{
         System.out.println("No existe ningún servicio con el código indicado.\n");
     }
     
+    /**
+     * Crea y añade un nuevo servicio al sistema.
+     */
     private void agregarServicio(){
         int idServicio = 0;
         String descripcion;

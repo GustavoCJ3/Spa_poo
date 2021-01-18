@@ -1,10 +1,14 @@
 package menus;
-import balneario.Balneario;
 import habitaciones.Habitacion;
 import factorias.FactoryHabitacion;
 import java.util.Scanner;
 
 
+/**
+ * 
+ * @author Gustavo Cortés Jiménez
+ * @author Rodrigo Lázaro Escudero
+ */
 public class MenuHabitaciones extends Menu{
     
     public MenuHabitaciones(){
@@ -18,6 +22,9 @@ public class MenuHabitaciones extends Menu{
         
     }
     
+    /**
+     * Muestra los datos de todas las habitaciones guardadas
+     */
     private void listaHabitaciones(){
         if(getBalneario().getHabitaciones().isEmpty()){
             System.out.println("\nNo hay habitaciones registradas\n");
@@ -29,17 +36,24 @@ public class MenuHabitaciones extends Menu{
         }
     }
     
+    /**
+     * Muestra los datos de una habitación
+     * @param codigo El código de la factura que mostrar
+     */
     private void listaHabitaciones(int numHabitacion){
-        for (Habitacion h: getBalneario().getHabitaciones()){
-            if (h.getNumero() == numHabitacion){
-                h.infoHabitacion();
+        Habitacion habit = getBalneario().buscarHabitacion(numHabitacion);
+        if (habit != null){
+            habit.infoHabitacion();
                 System.out.println("");
                 return;
-            }
         }
+        
         System.out.println("\nLa habitación no está registrada\n");
     }
     
+    /**
+     * Crea y añade una nueva habitación al sistema.
+     */
     private void agregarHabitacion(){
         int numero = 0;
         boolean flag = true;
@@ -60,6 +74,9 @@ public class MenuHabitaciones extends Menu{
         System.out.println("Habitación añadida.");
     }
     
+    /**
+     * Elimina una habitación almacenada en el sistema
+     */
     private void eliminarHabitacion(){
         boolean flag = true;
         Habitacion habit = null;

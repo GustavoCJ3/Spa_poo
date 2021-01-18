@@ -3,10 +3,11 @@ package menus;
 import facturas.Factura;
 
 /**
- *
- * @author maxpi
+ * @author Gustavo Cortés Jiménez
+ * @author Rodrigo Lázaro Escudero
  */
 public class MenuFacturas extends Menu{
+    
     
     public MenuFacturas(){
         super("1. Listado de todas las facturas\n"
@@ -18,12 +19,19 @@ public class MenuFacturas extends Menu{
         
     }
     
+    /**
+     * Muestra los datos de todas las facturas guardadas
+     */
     private void listaFacturas(){
         for(Factura f: getBalneario().getFacturas()){
             System.out.println(f.infoFactura());
         }
     }
     
+    /**
+     * Muestra los datos de una factura
+     * @param codigo El código de la factura que mostrar
+     */
     private void listaFacturas(String codigo){
         //TODO: String listaTotalReservas = (bucle para listar) //Esperar esto a ver si podemos usar la misma estrategia que para el composite de reservas
         for(Factura f: getBalneario().getFacturas()){
@@ -40,6 +48,9 @@ public class MenuFacturas extends Menu{
         return;
     }
     
+    /**
+     * Crea y añade una nueva factura al sistema
+     */
     private void generarFactura(){
         //TODO: hay que controlar que el idFactura sea único (autoincremental vale) y convertirlo a string
         /*

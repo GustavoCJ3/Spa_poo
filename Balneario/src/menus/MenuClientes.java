@@ -51,7 +51,7 @@ public class MenuClientes extends Menu{
     }
     
     /**
-     * Crea y añade a un nuevo cliente al sistema.
+     * Crea y añade un nuevo cliente al sistema.
      */
     private void agregarCliente(){        
         String idCliente;
