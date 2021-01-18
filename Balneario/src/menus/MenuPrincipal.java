@@ -2,13 +2,17 @@ package menus;
 import java.util.ArrayList;
 
 /**
- *
- * @author maxpi
+ * 
+ * @author Gustavo Cortés Jiménez
+ * @author Rodrigo Lázaro Escudero
  */
 public class MenuPrincipal extends Menu{
     
     private final ArrayList<Menu> menus = new ArrayList();
     
+    /**
+     *
+     */
     public MenuPrincipal(){
         super("1. Habitaciones\n"
                     + "2. Clientes\n"
@@ -25,16 +29,26 @@ public class MenuPrincipal extends Menu{
         menus.add(new MenuFacturas());
     }
     
+    /**
+     * Carga los datos del archivo de configuración, y carga el menú principal
+     */
     public void iniciar(){
         getBalneario().cargarDatos();
         menu();
     }
     
+    /**
+     * Guarda los datos del programa en el archivo de configuración
+     */
     public void cerrar(){
         getBalneario().guardarDatos();
         System.out.println("Gracias por usar esta aplicación.");
     }
     
+    /**
+     *
+     * @param respuesta
+     */
     @Override
     public void opciones(byte respuesta){
         if(respuesta != 0){
@@ -44,6 +58,10 @@ public class MenuPrincipal extends Menu{
         }
     }
     
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         MenuPrincipal menu = new MenuPrincipal();
         

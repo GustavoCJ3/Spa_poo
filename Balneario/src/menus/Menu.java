@@ -4,20 +4,27 @@ import balneario.Balneario;
 import java.util.Scanner;
 
 /**
- *
- * @author maxpi
+ * 
+ * @author Gustavo Cortés Jiménez
+ * @author Rodrigo Lázaro Escudero
  */
 public abstract class Menu {
     private final Balneario balneario;
     private final String mensaje;
     private final int max;
     
+    /**
+     *
+     * @param mensaje Opciones que muestra el menú
+     * @param max número máximo de opción
+     */
     public Menu(String mensaje, int max){
         balneario = Balneario.getInstancia();
         this.mensaje = mensaje;
         this.max = max;
     }
 
+    //getters
     public Balneario getBalneario() {
         return balneario;
     }
@@ -30,6 +37,9 @@ public abstract class Menu {
         return max;
     }
     
+    /**
+     * muestra las opciones disponibles, y pide una
+     */
     public void menu(){
         byte respuesta = 0;
         boolean flag = true;
@@ -58,5 +68,9 @@ public abstract class Menu {
         }while(respuesta != 0);
     }
     
+    /**
+     *
+     * @param respuesta
+     */
     public abstract void opciones(byte respuesta);
 }
