@@ -1,17 +1,18 @@
 package factorias;
 
-import balneario.Balneario;
 import java.util.Scanner;
 import java.io.*;
 import servicios.Servicio;
 
 /**
- *
- * @author Ro
+ * Se encarga del proceso de creación de Servicios
+ * @author Gustavo Cortés Jiménez.
+ * @author Rodrigo Lázaro Escudero.
  */
 
 public class FactoryServicio implements Factoria<Servicio>{
     
+    @Override
     public Servicio getInstancia(String idServicio){
         String descripcion = " ";
         float coste = 0f;
