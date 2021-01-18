@@ -1,5 +1,6 @@
 package factorias;
 
+import balneario.Balneario;
 import java.util.Scanner;
 import java.io.*;
 import servicios.Servicio;
@@ -11,7 +12,7 @@ import servicios.Servicio;
 
 public class FactoryServicio implements Factoria<Servicio>{
     
-    public Servicio getInstancia(String idServicio){
+    public Servicio getInstancia(String idServicio, Balneario balneario){
         String descripcion = " ";
         float coste = 0f;
         boolean flag = true;

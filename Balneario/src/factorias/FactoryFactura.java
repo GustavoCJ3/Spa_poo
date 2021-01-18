@@ -1,5 +1,6 @@
 package factorias;
 
+import balneario.Balneario;
 import facturas.Factura;
 
 /**
@@ -8,7 +9,7 @@ import facturas.Factura;
  */
 public class FactoryFactura implements Factoria<Factura>{
 
-    public Factura getInstancia(String id) {
+    public Factura getInstancia(String id, Balneario balneario) {
         return null; //TODO
     }
     

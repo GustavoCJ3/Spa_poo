@@ -1,5 +1,6 @@
 package menus;
 
+import factorias.FactoryReserva;
 import reservas.Reserva;
 
 /**
@@ -38,29 +39,28 @@ public class MenuReservas extends Menu{
     }
     
     private void agregarReserva(){
-    /*      //TODO
-        int idServicio = 0;
+        int idReserva = 0;
         String descripcion;
         float coste;
-        FactoryServicio fs;
+        FactoryReserva fr;
         
         //Generamos automáticamente un Id nuevo y no repetido
         boolean duplicado = false;
         do {        
-            for(Servicio s: getBalneario().getServicios()){
-                if(s.getCodigo() == idServicio) {
+            for(Reserva r: getBalneario().getReservas()){
+                if(r.getNumReserva() == idReserva) {
                     duplicado = true;
-                    idServicio++;
+                    idReserva++;
                 } else {
                     duplicado = false;
                 }
             }
         } while(duplicado);        
         
-        fs = new FactoryServicio(); //TODO ver si se pudiera hacer esto de modo estático para ahorrar tneer que instanciar la factoría
-        getBalneario().getServicios().add(fs.getInstancia(Integer.toString(idServicio)));
-        System.out.println("Servicio añadido.\n");
-    */
+        fr = new FactoryReserva();
+        getBalneario().getReservas().add(fr.getInstancia(Integer.toString(idReserva), getBalneario()));
+        System.out.println("Reserva añadida.\n");
+
     }
     
     private void eliminarReserva(int numReserva){
@@ -72,6 +72,8 @@ public class MenuReservas extends Menu{
             }
         }
         return;
+        
+        //TODO eliminar tb de los array propios de cada ReservaHabitacion
         
         /*
         for(Servicio s: getBalneario().getServicios()){
@@ -94,7 +96,7 @@ public class MenuReservas extends Menu{
                 listaReservas();
                 break;
             case 2:
-                //listaReservas(); //TODO
+                //listaReservas(Reserva.pedirId());
                 break;
             case 3:
                 agregarReserva();

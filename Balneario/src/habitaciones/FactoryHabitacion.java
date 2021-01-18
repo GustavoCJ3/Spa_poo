@@ -15,7 +15,7 @@ public class FactoryHabitacion { //implements Factoria<Habitacion>
     //Había que cambiar aquí el tipo de dato de entrada de numero a String (luego se hace un parse y listo), y que pidas el precio
     //por teclado dentro del FactoryHabitación en vez de rebirlo como argumento.
     
-    //public Habitacion getInstancia(String numero){
+    //public Habitacion getInstancia(String numero, Balneario balneario){
     public static Habitacion getHabitacion(int numero, float precio){
         boolean flag = true;
         byte respuesta = 0;

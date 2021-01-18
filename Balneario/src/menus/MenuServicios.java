@@ -55,8 +55,8 @@ public class MenuServicios extends Menu{
             }
         } while(duplicado);        
         
-        fs = new FactoryServicio(); //TODO ver si se pudiera hacer esto de modo estático para ahorrar tneer que instanciar la factoría
-        getBalneario().getServicios().add(fs.getInstancia(Integer.toString(idServicio)));
+        fs = new FactoryServicio();
+        getBalneario().getServicios().add(fs.getInstancia(Integer.toString(idServicio), getBalneario()));
         System.out.println("Servicio añadido.\n");
 
     }

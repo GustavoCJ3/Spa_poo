@@ -8,23 +8,20 @@ import java.time.LocalDate;
  *
  * @author Ro
  */
-//TODO intentar encajarlo en patrón composite, una vez ya esté funcionando todo
 public abstract class Reserva implements Serializable{
     //Atributos
     private int numReserva;
     private int numHabitacion;
     private LocalDate diaInicio;
     private float coste;
-    private Cliente cliente;
     
     
     //Constructores
-    public Reserva(int numReserva, int numHabitacion, LocalDate diaInicio, float coste, Cliente cliente) {
+    public Reserva(int numReserva, int numHabitacion, LocalDate diaInicio, float coste) {
         this.numReserva = numReserva;
         this.numHabitacion = numHabitacion;
         this.diaInicio = diaInicio;
         this.coste = coste;
-        this.cliente = cliente;
     }
     
     

@@ -16,8 +16,8 @@ public class ReservaSpa extends Reserva{
     
     
     //Constructores
-    public ReservaSpa(int numReserva, int numHabitacion, LocalDate diaInicio, float coste, Cliente cliente, LocalDate diaServicio, Servicio servicio, byte numPersonas){
-        super(numReserva, numHabitacion, diaInicio, coste, cliente);
+    public ReservaSpa(int numReserva, int numHabitacion, LocalDate diaInicio, float coste, LocalDate diaServicio, Servicio servicio, byte numPersonas){
+        super(numReserva, numHabitacion, diaInicio, coste);
         this.diaServicio = diaServicio;
         this.servicio = servicio;
         this.numPersonas = numPersonas;
@@ -25,7 +25,7 @@ public class ReservaSpa extends Reserva{
     
     
     //Métodos
-    public String infoReserva(){ //TODO: faltan cosas, esto es placeholder
+    public String infoReserva(){
         return "Identificador de reserva: " + getNumReserva()
                 + "\nCódigo del servicio: " + servicio.getCodigo()
                 + "\nDescripción del servicio: " + servicio.getDescripcion()

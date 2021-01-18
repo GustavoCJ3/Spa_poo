@@ -10,13 +10,15 @@ import java.util.ArrayList;
  */
 public class ReservaHabitacion extends Reserva{
     //Atributos
+    private Cliente cliente;
     private LocalDate diaFin;
     private ArrayList<Reserva> reservasSpa = new ArrayList<Reserva>(); //Tipo Reserva en vez de ReservaSpa porque usamos patrón Composite
     
     
     //Constructores
     public ReservaHabitacion(int numReserva, int numHabitacion, LocalDate diaInicio, float coste, Cliente cliente, LocalDate diaFin){
-        super(numReserva, numHabitacion, diaInicio, coste, cliente);
+        super(numReserva, numHabitacion, diaInicio, coste);
+        this.cliente = cliente;
         this.diaFin = diaFin;        
     }
     

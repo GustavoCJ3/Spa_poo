@@ -1,5 +1,6 @@
 package factorias;
 
+import balneario.Balneario;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
@@ -12,7 +13,7 @@ import clientes.Cliente;
  */
 public class FactoryCliente implements Factoria<Cliente>{
     
-    public Cliente getInstancia(String idCliente){
+    public Cliente getInstancia(String idCliente, Balneario balneario){
         String nombreApellidos = " ";
         String telefonoMovil = " ";
         boolean flag = true;
