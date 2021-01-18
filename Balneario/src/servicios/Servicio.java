@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 /**
- *
- * @author Ro
+ * Contiene la información y las funciones de un servicio.
+ * @author Gustavo Cortés Jiménez.
+ * @author Rodrigo Lázaro Escudero.
  */
 public class Servicio implements Serializable{
     //Atributos
@@ -22,13 +23,22 @@ public class Servicio implements Serializable{
     }
     
     
-    //Métodos    
+    //Métodos
+    
+    /**
+     * Muestra la información de la habitación.
+     * @return los datos de la factura.
+     */
     public String infoServicio(){
         return "Código de servicio: " + codigo
                 + "\nDescripción: " + descripcion
                 + "\nCoste: " + coste + " euros.\n";
     }
 
+    /**
+     * Pide un código de un servicio.
+     * @return un código de servicio.
+     */
     public static int pedirId(){
         int id = 0;
         boolean flag = true;

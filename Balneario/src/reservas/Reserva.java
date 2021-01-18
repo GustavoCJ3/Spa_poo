@@ -1,13 +1,13 @@
 package reservas;
 
-import clientes.Cliente;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
- *
- * @author Ro
+ * Contiene la información y las funciones de una reserva.
+ * @author Gustavo Cortés Jiménez.
+ * @author Rodrigo Lázaro Escudero.
  */
 public abstract class Reserva implements Serializable{
     //Atributos
@@ -27,11 +27,35 @@ public abstract class Reserva implements Serializable{
     
     
     //Métodos
+    
+    /**
+     * Muestra la información de la reserva.
+     * @return los datos de la reserva.
+     */
     public abstract String infoReserva();
+    
+    /**
+     * Calcula el coste del servicio.
+     * @return el coste total del servicio.
+     */
     public abstract float getCosteTotal();
+    
+    /**
+     * Añade una nueva reserva al ArrayList de reservas.
+     * @param r una reserva que añadir.
+     */
     public abstract void agregar(Reserva r);
+    
+    /**
+     * Elimina una reserva del ArrayList de reservas.
+     * @param r una reserva que eliminar.
+     */
     public abstract void eliminar(Reserva r);
     
+    /**
+     * Pide un número de reserva.
+     * @return un número de reserva.
+     */
     public static int pedirId(){
         int id = 0;
         boolean flag = true;

@@ -1,12 +1,12 @@
 package reservas;
 
-import clientes.Cliente;
 import servicios.Servicio;
 import java.time.LocalDate;
 
 /**
- *
- * @author Ro
+ * Concreta una reserva del Spa.
+ * @author Gustavo Cortés Jiménez.
+ * @author Rodrigo Lázaro Escudero.
  */
 public class ReservaSpa extends Reserva{
     //Atributos
@@ -27,6 +27,7 @@ public class ReservaSpa extends Reserva{
     
     
     //Métodos
+    @Override
     public String infoReserva(){
         return "Identificador de reserva: " + getNumReserva()
                 + "\nCódigo del servicio: " + servicio.getCodigo()
@@ -37,14 +38,23 @@ public class ReservaSpa extends Reserva{
                 + "\nNúmero de personas: " + numPersonas + "\n";
     }
     
+    @Override
     public float getCosteTotal() {
         return getCoste() * numPersonas;
     }    
     
+    @Override
+    /**
+     * Muestra un mensaje de error.
+     */
     public void agregar(Reserva r){
         System.out.println("Error. Las Reservas de Spa no tienen sub-reservas.\n");
     }
     
+    /**
+     * Muestra un mensaje de error.
+     */
+    @Override
     public void eliminar(Reserva r){
         System.out.println("Error. Las Reservas de Spa no tienen sub-reservas.\n");
     }

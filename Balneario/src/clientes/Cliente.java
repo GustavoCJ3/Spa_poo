@@ -3,11 +3,11 @@ package clientes;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.util.Scanner;
 
 /**
- *
- * @author Ro
+ * Contiene la información y las funciones de un cliente.
+ * @author Gustavo Cortés Jiménez.
+ * @author Rodrigo Lázaro Escudero.
  */
 public class Cliente implements Serializable{
     //Atributos
@@ -25,13 +25,23 @@ public class Cliente implements Serializable{
 
     
     
-    //Métodos    
+    //Métodos
+
+    /**
+     * Muestra la información del cliente.
+     * @return los datos del cliente.
+     */
     public String infoCliente(){
         return "DNI: " + dni
                 + "\nNombre y Apellidos: " + nombreApellidos
                 + "\nTeléfono Móvil: " + telefonoMovil + "\n";
     }
 
+    /**
+     * Pide un DNI.
+     * @return un DNI.
+     * @post el DNI debe tener el formato correspondiente.
+     */
     public static String pedirId(){
         boolean flag = true;
         BufferedReader br;
@@ -58,6 +68,11 @@ public class Cliente implements Serializable{
         return dni;
     }
     
+    /**
+     * Comprueba si el DNI recibido tiene la estructura correcta.
+     * @param dni el DNI a validar
+     * @return true si es correcto; si no, false.
+     */
     public static boolean validaDni(String dni) {
         if (dni.length() != 9) {
             return false;
@@ -71,6 +86,11 @@ public class Cliente implements Serializable{
         return false;
     }
     
+    /**
+     * Comprueba si el teléfono recibido tiene la estructura correcta.
+     * @param telefonoMovil un teléfono a validar.
+     * @return true si es correcto; si no, false.
+     */
     public static boolean validaMovil(String telefonoMovil) {
         int telMov;
         

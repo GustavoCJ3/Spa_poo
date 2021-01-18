@@ -5,8 +5,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- *
- * @author Ro
+ * Concreta la reserva de una habitación.
+ * @author Gustavo Cortés Jiménez.
+ * @author Rodrigo Lázaro Escudero.
  */
 public class ReservaHabitacion extends Reserva{
     //Atributos
@@ -23,6 +24,7 @@ public class ReservaHabitacion extends Reserva{
     }
     
     //Métodos
+    @Override
     public String infoReserva(){
         String concatReservasSpa = "\n";
         for(Reserva rs: reservasSpa){
@@ -38,6 +40,7 @@ public class ReservaHabitacion extends Reserva{
                 + "\nServicios de Spa asociados: " + concatReservasSpa;
     }
     
+    @Override
     public float getCosteTotal() {
         float total = getCoste();
         for(Reserva rs: reservasSpa){
@@ -46,6 +49,7 @@ public class ReservaHabitacion extends Reserva{
         return total;
     }
     
+    @Override
     public void agregar(Reserva r){
         reservasSpa.add(r);
         System.out.println("Se ha agregado Reserva de Spa: " + r.getNumReserva()
@@ -53,6 +57,7 @@ public class ReservaHabitacion extends Reserva{
                 + ", con número de habitación: " + getNumHabitacion() + "\n");
     }
     
+    @Override
     public void eliminar(Reserva r){
         reservasSpa.remove(r);
         System.out.println("Se ha eliminado la Reserva de Spa: " + r.getNumReserva()
