@@ -11,8 +11,6 @@ import reservas.ReservaHabitacion;
 import reservas.ReservaSpa;
 import servicios.Servicio;
 
-//TODO comprobaciones adicionales de solapamientos de fechas
-
 /**
  * Se encarga del proceso de creación de Reservas
  * @author Gustavo Cortés Jiménez.
@@ -37,11 +35,13 @@ public class FactoryReserva implements Factoria<Reserva>{
         numHabitacion = Habitacion.pedirNumero();        
         //Comprobamos que la habitación especificada esté registrada en el sistema
         Habitacion h = Balneario.getInstancia().buscarHabitacion(numHabitacion);
-        if (h != null){
+        if (h == null){
             System.out.println("La habitación indicada no está registrada en el sistema. Regístrela primero antes de usarla.\n");
             return null;
         }
-        
+
+        //Haremos las comprobaciones de solapamiento de fechas en las reservas más adelante,
+        //al recibir las fechas de fin de reserva y de servicio, respectivamente
         System.out.println("Introduce la fecha de inicio de la reserva (formato aaaa-mm-dd): \n");     
         flag = true;
         do{
@@ -164,19 +164,38 @@ public class FactoryReserva implements Factoria<Reserva>{
                 try {
                     br = new BufferedReader(new InputStreamReader(System.in),1);
                     diaFin = LocalDate.parse(br.readLine());
+                    if (!(diaInicio.isBefore(diaFin))) {
+                        throw new Exception();
+                    }
                     flag = false;
                 } catch(Exception e) {
-                    System.out.println("\nError, fecha inválida. El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25)."
-                            + "Además, la fecha de fin de reserva debe ser superior a la fecha de inicio.\n");
+                    System.out.println("\nLa fecha de fin de reserva debe ser superior a la fecha de inicio. "
+                            + "El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25).\n");
                 }
             }while(flag);
+            //Comprobaciones adicionales de solapamientos de fechas
+            for (Reserva r: Balneario.getInstancia().getReservas()) {
+                //Comprobamos sólo sobre reservas de habitaciones con el mismo número que pudiesen generar conflictos
+                if ((r instanceof ReservaHabitacion) && (r.getNumHabitacion() == numHabitacion)){
+                    
+                    //Comprobamos que la fecha de inicio de la reserva que queremos hacer no sea igual o anterior a la fecha de liberación de la reserva previa
+                    if (diaInicio.isBefore(((ReservaHabitacion)r).getDiaFin()) || diaInicio.isEqual(((ReservaHabitacion)r).getDiaFin())
+                            ///Comprobamos que la fecha de fin de la reserva no sea igual o posterior a la fecha de inicio de la reserva previa
+                            || diaFin.isEqual(r.getDiaInicio()) || diaFin.isAfter(r.getDiaInicio())){
+                        
 
-            //Buscamos el coste de la habitación
-            Habitacion hab = Balneario.getInstancia().buscarHabitacion(numHabitacion);
-            coste = hab.getPrecio();
+                        //Buscamos el coste de la habitación
+                        Habitacion hab = Balneario.getInstancia().buscarHabitacion(numHabitacion);
+                        coste = hab.getPrecio();
 
-            ReservaHabitacion reserva = new ReservaHabitacion(numReserva, numHabitacion, diaInicio, coste, c, diaFin);                                        
-            return (Reserva)reserva;
+                        ReservaHabitacion reserva = new ReservaHabitacion(numReserva, numHabitacion, diaInicio, coste, c, diaFin);                                        
+                        return (Reserva)reserva;
+                    }
+                }
+            }
+            
+            System.out.println("Error. La habitación ya estaba reservada para ese periodo. Elija fechas no ocupadas.\n");
+            return null;
         }  
     }    
 }
