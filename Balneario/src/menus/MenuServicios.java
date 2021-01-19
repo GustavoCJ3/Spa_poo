@@ -38,13 +38,13 @@ public class MenuServicios extends Menu{
      * Muestra los datos de un servicio
      * @param codigo El codigo del servicio que mostrar
      */
-    private void listaServicios(int codigo) {        
-        for(Servicio s: getBalneario().getServicios()){
-            if (s.getCodigo() == codigo) {
-                System.out.println(s.infoServicio());
+    private void listaServicios(int codigo) { 
+        Servicio s = getBalneario().buscarServicio(codigo);
+        if (s != null){
+            System.out.println(s.infoServicio());
             return;
-            }
         }
+        
         System.out.println("No existe ningún servicio con el código indicado.\n");
     }
     

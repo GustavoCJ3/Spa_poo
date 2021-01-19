@@ -37,16 +37,16 @@ public class MenuFacturas extends Menu{
      * @param codigo El código de la factura que mostrar
      */
     private void listaFacturas(String codigo){
-        for(Factura f: getBalneario().getFacturas()){
-            if (f.getCodigo().equals(codigo)) {
-                System.out.println("Código de factura: " + codigo
-                    + "\nInformación del cliente: " + f.getCliente().infoCliente()
-                    + "\nListado de reservas: " + f.getReserva().infoReserva()
-                    + "\nCoste total: " + f.getReserva().getCosteTotal()
-                    + "\nFecha de facturación: " + f.getFechaFactura() + "\n");                
-                return;
-            }
+        Factura f = getBalneario().buscarFacura(codigo);
+        if (f != null){
+            System.out.println("Código de factura: " + codigo
+                + "\nInformación del cliente: " + f.getCliente().infoCliente()
+                + "\nListado de reservas: " + f.getReserva().infoReserva()
+                + "\nCoste total: " + f.getReserva().getCosteTotal()
+                + "\nFecha de facturación: " + f.getFechaFactura() + "\n");                
+            return;
         }
+
         System.out.println("No existe ninguna factura con el código indicado.\n");
     }
     

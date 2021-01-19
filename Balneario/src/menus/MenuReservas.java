@@ -41,12 +41,12 @@ public class MenuReservas extends Menu{
      * @param numReserva El número de la reserva que mostrar
      */
     private void listaReservas(int numReserva){
-        for(Reserva r: getBalneario().getReservas()){
-            if (r.getNumReserva() == numReserva) {
-                System.out.println(r.infoReserva());
+        Reserva r = getBalneario().buscarReserva(numReserva);
+        if (r != null){
+            System.out.println(r.infoReserva());
             return;
-            }
         }
+        
         System.out.println("No existe ninguna reserva con el número indicado.\n");
     }
     

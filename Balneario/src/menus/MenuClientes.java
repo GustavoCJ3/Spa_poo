@@ -38,12 +38,10 @@ public class MenuClientes extends Menu{
      * @param dni El DNI del usuario que mostrar
      */
     private void listaClientes(String dni){
-        for(Cliente c: getBalneario().getClientes()){
-            if (c.getDni().equalsIgnoreCase(dni)) {
-                System.out.println(c.infoCliente());
-                
-                return; //Si el cliente existe
-            }
+        Cliente c = getBalneario().buscarCliente(dni);
+        if (c != null){
+            System.out.println(c.infoCliente());
+            return;
         }
         System.out.println("No existe ningún cliente con el DNI indicado.\n");
     }

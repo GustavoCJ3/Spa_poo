@@ -132,9 +132,9 @@ public class Balneario implements Serializable{
         return null;
     }
     
-    public Factura buscarFacura(int numero){
+    public Factura buscarFacura(String numero){
         for (Factura f: facturas){
-            if (Integer.parseInt(f.getCodigo()) == numero){
+            if (f.getCodigo().equals(numero)){
                 return f;
             }
         }
