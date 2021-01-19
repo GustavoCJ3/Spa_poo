@@ -82,18 +82,22 @@ public class FactoryReserva implements Factoria<Reserva>{
             LocalDate diaServicio = LocalDate.now();
             byte numPersonas = 0;
             
-            //Comprobar lo primero de todo que la habitación indicada está reservada.
+            //Comprobar lo primero de todo que la habitación indicada está reservada, y que la fecha de inicio de la reserva de 
+            //spa coincide con la fecha de inicio de la reserva de la habitación
             flag = false;
             for (Reserva r : Balneario.getInstancia().getReservas()) {
-                //Comprobamos que el número de habitación coincida y que la clase sea ReservaHabitacion
-                if ((r.getNumHabitacion() == numHabitacion) && (r instanceof ReservaHabitacion)){
+                //r instanceof ReservaHabitacion
+                //r.getNumHabitacion() == numHabitacion
+                //diaInicio.isEqual(r.getDiaInicio())
+                if ((r instanceof ReservaHabitacion) && (r.getNumHabitacion() == numHabitacion) && (diaInicio.isEqual(r.getDiaInicio()))){
                     reservaPadre = (ReservaHabitacion)r;
                                         
                     flag = true;
                 }
             }        
             if (!flag) {
-                System.out.println("No se puede reservar servicio de spa para esa habitación porque dicha habitación no está reservada por nadie.\n");
+                System.out.println("No se puede reservar servicio de spa para esa habitación en ese periodo. (Debes asegurarte de que la habitación está reservada y que"
+                        + "\nla fecha de inicio indicada para el servicio de spa coincide con la fecha de inicio de la habitación).\n");
 
                 return null;
             }  
@@ -113,13 +117,24 @@ public class FactoryReserva implements Factoria<Reserva>{
                 try {
                     br = new BufferedReader(new InputStreamReader(System.in),1);
                     diaServicio = LocalDate.parse(br.readLine());
-                    //TODO si el servicio está pedido ese día pedimos fecha distinta
                     
                     flag = false;
                 } catch(Exception e) {
                     System.out.println("\nError, fecha inválida. El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25).\n");
-                }
+                }            
             }while(flag);
+            
+            //Comprobamos si el servicio ya está pedido ese día, y pedimos fecha distinta de ser así
+            for (Reserva r : Balneario.getInstancia().getReservas()) {
+                //r instanceof ReservaSpa
+                //((ReservaSpa)r).getServicio().getCodigo() == codigoServicio
+                //((ReservaSpa)r).getDiaServicio() == diaServicio                        
+                if ((r instanceof ReservaSpa) && (((ReservaSpa)r).getServicio().getCodigo() == codigoServicio) && (((ReservaSpa)r).getDiaServicio() == diaServicio)){
+                    System.out.println("\nEl servicio no puede ser reservado ese día porque ya existe una reserva previa. Elije una fecha distinta.\n");
+                    return null;
+                }
+            }
+            
             //Comprobamos que la fecha del servicio esté dentro del intervalo en que la habitación ha sido reservada
             for (Reserva r: Balneario.getInstancia().getReservas()) {
                 //Comprobamos sólo sobre reservas de habitaciones con el mismo número

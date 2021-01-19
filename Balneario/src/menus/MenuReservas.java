@@ -63,7 +63,7 @@ public class MenuReservas extends Menu{
             getBalneario().getReservas().add(reserva);
             System.out.println("Reserva añadida.\n");
         } else {
-            System.out.println("La reserva NO se ha creado. Por favor verifique que las habitaciones, clientes y servicios necesarios"
+            System.out.println("La reserva NO se ha creado. Por favor verifique que las habitaciones, clientes y servicios necesarios "
                     + "estén registrados previamente en el sistema.\n");
             Reserva.numMaxReserva--;
         }
