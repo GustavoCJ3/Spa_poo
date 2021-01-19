@@ -10,6 +10,7 @@ import java.util.Scanner;
  */
 public class Servicio implements Serializable{
     //Atributos
+    public static int codigoMax = 0;
     private int codigo;
     private String descripcion;
     private float coste;
@@ -57,9 +58,9 @@ public class Servicio implements Serializable{
 
         }while(flag);
         
+        
         return id;
     }
-    
     
     //Getters y Setters
     public int getCodigo() {

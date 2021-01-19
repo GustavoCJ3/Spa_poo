@@ -11,11 +11,13 @@ import reservas.Reserva;
 import reservas.ReservaHabitacion;
 
 /**
- *
- * @author Ro
+ * Se encarga del proceso de creación de Facturas
+ * @author Gustavo Cortés Jiménez.
+ * @author Rodrigo Lázaro Escudero.
  */
 public class FactoryFactura implements Factoria<Factura>{
 
+    @Override
     public Factura getInstancia(String idFactura) {
  
         Cliente cliente = null;

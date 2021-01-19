@@ -38,7 +38,11 @@ public class FactoryServicio implements Factoria<Servicio>{
             try {
                 sc = new Scanner(System.in);
                 coste = sc.nextFloat();
-                flag = false;
+                if (coste < 0){
+                    System.out.println("\nEl precio debe ser superior a 0.");
+                }else{
+                    flag = false;
+                }
             } catch(Exception e) {
                 System.out.println("\nEl coste del servicio debe ser un dato de tipo float. Inténtalo otra vez:\n");
             }

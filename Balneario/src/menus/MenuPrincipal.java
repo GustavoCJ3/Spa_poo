@@ -1,5 +1,7 @@
 package menus;
 import java.util.ArrayList;
+import reservas.Reserva;
+import servicios.Servicio;
 
 /**
  * Permite al usuario acceder al resto de menús.
@@ -30,7 +32,17 @@ public class MenuPrincipal extends Menu{
      * Carga los datos del archivo de configuración, y llama al menú principal
      */
     public void iniciar(){
-        getBalneario().cargarDatos();
+        if (getBalneario().cargarDatos()){
+            int tam = getBalneario().getReservas().size();
+            if (tam != 0){
+                Reserva.numMaxReserva = getBalneario().getReservas().get( tam - 1 ).getNumReserva() + 1;
+            }
+            
+            tam = getBalneario().getServicios().size();
+            if (tam != 0){
+                Servicio.codigoMax = getBalneario().getServicios().get( tam - 1 ).getCodigo() + 1;
+            }
+        }
         menu();
     }
     

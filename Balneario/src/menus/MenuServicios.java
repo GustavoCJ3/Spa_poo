@@ -51,23 +51,9 @@ public class MenuServicios extends Menu{
      * Crea y añade un nuevo servicio al sistema.
      */
     private void agregarServicio(){
-        int idServicio = 0;
-        FactoryServicio fs;
-        
-        //Generamos automáticamente un Id nuevo y no repetido
-        boolean duplicado = false;
-        do {        
-            for(Servicio s: getBalneario().getServicios()){
-                if(s.getCodigo() == idServicio) {
-                    duplicado = true;
-                    idServicio++;
-                } else {
-                    duplicado = false;
-                }
-            }
-        } while(duplicado);        
-        
-        fs = new FactoryServicio();
+        int idServicio = Servicio.codigoMax++;
+        FactoryServicio fs = new FactoryServicio();
+          
         getBalneario().getServicios().add(fs.getInstancia(Integer.toString(idServicio)));
         System.out.println("Servicio añadido.\n");
 

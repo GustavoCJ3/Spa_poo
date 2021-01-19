@@ -54,32 +54,18 @@ public class MenuReservas extends Menu{
      * Crea y añade una nueva reserva al sistema.
      */
     private void agregarReserva(){
-        int idReserva = 0;
-        String descripcion;
-        float coste;
-        FactoryReserva fr;
+        int idReserva = Reserva.numMaxReserva++;
+        FactoryReserva fr = new FactoryReserva();
         
-        //Generamos automáticamente un Id nuevo y no repetido
-        boolean duplicado = false;
-        do {        
-            for(Reserva r: getBalneario().getReservas()){
-                if(r.getNumReserva() == idReserva) {
-                    duplicado = true;
-                    idReserva++;
-                } else {
-                    duplicado = false;
-                }
-            }
-        } while(duplicado);        
-        
-        fr = new FactoryReserva();
         Reserva reserva = fr.getInstancia(Integer.toString(idReserva));
+        
         if (reserva != null) {
             getBalneario().getReservas().add(reserva);
             System.out.println("Reserva añadida.\n");
         } else {
             System.out.println("La reserva NO se ha creado. Por favor verifique que las habitaciones, clientes y servicios necesarios"
                     + "estén registrados previamente en el sistema.\n");
+            Reserva.numMaxReserva--;
         }
         
     }

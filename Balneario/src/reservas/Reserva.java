@@ -11,6 +11,7 @@ import java.util.Scanner;
  */
 public abstract class Reserva implements Serializable{
     //Atributos
+    public static int numMaxReserva = 0;
     private int numReserva;
     private int numHabitacion;
     private LocalDate diaInicio;
@@ -76,7 +77,6 @@ public abstract class Reserva implements Serializable{
         
         return id;
     }
-    
     
     //Getters y Setters
     public int getNumReserva() {

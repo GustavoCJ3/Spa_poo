@@ -5,12 +5,12 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import reservas.Reserva;
 
 /**
- *
- * @author Ro
+ * Contiene la información y las funciones sobre una factura.
+ * @author Gustavo Cortés Jiménez.
+ * @author Rodrigo Lázaro Escudero.
  */
 public class Factura implements Serializable{
     //Atributos
@@ -31,13 +31,22 @@ public class Factura implements Serializable{
     }
     
     
-    //Métodos    
+    //Métodos  
+    
+    /**
+     * Muestra la información de la factura.
+     * @return los datos de la factura.
+     */
     public String infoFactura(){
         return "Código de factura: " + codigo
                 + "\nDNI de cliente: " + cliente.getDni()
                 + "\nFecha de facturación: " + fechaFactura + "\n";
     }
     
+    /**
+     * Pide un número de fectura.
+     * @return un número de factura.
+     */
     public static String pedirId(){
         boolean flag = true;
         BufferedReader br;
@@ -64,6 +73,11 @@ public class Factura implements Serializable{
         return codigo;
     }
     
+    /**
+     * Comprueba si el código recibido tiene la estructura correcta.
+     * @param codigo el código de factura a comprobar.
+     * @return true si es correcto; si no, false.
+     */
     public static boolean validaCodigo(String codigo) {
         if (codigo.length() != 8) {
             return false;
