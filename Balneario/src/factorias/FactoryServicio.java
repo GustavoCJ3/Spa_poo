@@ -32,7 +32,7 @@ public class FactoryServicio implements Factoria<Servicio>{
             }
         } while (flag);     
         
-        System.out.println("Introduce el coste del servicio: \n");     
+        System.out.println("Introduce el coste del servicio (usar coma): \n");     
         flag = true;
         do{
             try {

@@ -99,25 +99,41 @@ public class FactoryReserva implements Factoria<Reserva>{
             }  
             
             //Pedir código servicio y comprobar si existe
-            codigoServicio = Servicio.pedirId();            
-            Servicio s = Balneario.getInstancia().buscarServicio(codigoServicio);
-            if (s == null){
+            codigoServicio = Servicio.pedirId();
+            servicio = Balneario.getInstancia().buscarServicio(codigoServicio);
+            if (servicio == null){
                 System.out.println("El servicio indicado no está registrado en el sistema. Regístrelo primero antes de usarlo.\n");
                 return null;
             }
             
             //Pedir fecha del servicio
-            System.out.println("Introduce la fecha para reservar servicio de spa (formato aaaa-mm-dd): \n");     
+            System.out.println("Introduce la fecha para reservar servicio de spa (formato aaaa-mm-dd): \n");   
+            flag = true;
             do{
                 try {
                     br = new BufferedReader(new InputStreamReader(System.in),1);
                     diaServicio = LocalDate.parse(br.readLine());
+                    //TODO si el servicio está pedido ese día pedimos fecha distinta
+                    
                     flag = false;
                 } catch(Exception e) {
                     System.out.println("\nError, fecha inválida. El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25).\n");
                 }
             }while(flag);
-            //TODO comprobaciones adicionales de solapamientos de fechas, servicios, etc.
+            //Comprobamos que la fecha del servicio esté dentro del intervalo en que la habitación ha sido reservada
+            for (Reserva r: Balneario.getInstancia().getReservas()) {
+                //Comprobamos sólo sobre reservas de habitaciones con el mismo número
+                if ((r instanceof ReservaHabitacion) && (r.getNumHabitacion() == numHabitacion)){                    
+                    //Comprobamos que la fecha del servicio esté comprendida en el periodo de reserva de la habitación
+                    if (!fechaEntre(diaServicio, (ReservaHabitacion)r)){
+                        System.out.println("Error. La reserva de spa debe estar comprendida entre el día de inicio y el día final de la reserva de habitación asociada.\n");
+                        return null;
+                    }
+                }
+            }
+            
+            
+            
 
             //Pedir número de personas
             System.out.println("Introduce el número de personas que atenderán al servicio: \n");
@@ -160,6 +176,7 @@ public class FactoryReserva implements Factoria<Reserva>{
             }
 
             System.out.println("Introduce la fecha de finalización de la reserva (formato aaaa-mm-dd): \n");     
+            flag = true;
             do{
                 try {
                     br = new BufferedReader(new InputStreamReader(System.in),1);
@@ -173,29 +190,37 @@ public class FactoryReserva implements Factoria<Reserva>{
                             + "El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25).\n");
                 }
             }while(flag);
+            
             //Comprobaciones adicionales de solapamientos de fechas
             for (Reserva r: Balneario.getInstancia().getReservas()) {
                 //Comprobamos sólo sobre reservas de habitaciones con el mismo número que pudiesen generar conflictos
-                if ((r instanceof ReservaHabitacion) && (r.getNumHabitacion() == numHabitacion)){
-                    
-                    //Comprobamos que la fecha de inicio de la reserva que queremos hacer no sea igual o anterior a la fecha de liberación de la reserva previa
-                    if (diaInicio.isBefore(((ReservaHabitacion)r).getDiaFin()) || diaInicio.isEqual(((ReservaHabitacion)r).getDiaFin())
-                            ///Comprobamos que la fecha de fin de la reserva no sea igual o posterior a la fecha de inicio de la reserva previa
-                            || diaFin.isEqual(r.getDiaInicio()) || diaFin.isAfter(r.getDiaInicio())){
-                        
-
-                        //Buscamos el coste de la habitación
-                        Habitacion hab = Balneario.getInstancia().buscarHabitacion(numHabitacion);
-                        coste = hab.getPrecio();
-
-                        ReservaHabitacion reserva = new ReservaHabitacion(numReserva, numHabitacion, diaInicio, coste, c, diaFin);                                        
-                        return (Reserva)reserva;
+                if ((r instanceof ReservaHabitacion) && (r.getNumHabitacion() == numHabitacion)){                    
+                    //Comprobamos que ni la fecha de inicio ni la fecha de final estén comprendidas en periodos ocupados por otras reservas
+                    if (fechaEntre(diaInicio, (ReservaHabitacion)r) || fechaEntre(diaFin, (ReservaHabitacion)r)){
+                        System.out.println("Error. La habitación ya estaba reservada para ese periodo. Elija fechas no ocupadas.\n");
+                        return null;
                     }
                 }
             }
             
-            System.out.println("Error. La habitación ya estaba reservada para ese periodo. Elija fechas no ocupadas.\n");
-            return null;
+            //Buscamos el coste de la habitación
+            Habitacion hab = Balneario.getInstancia().buscarHabitacion(numHabitacion);
+            coste = hab.getPrecio();
+
+            ReservaHabitacion reserva = new ReservaHabitacion(numReserva, numHabitacion, diaInicio, coste, c, diaFin);                                        
+            return (Reserva)reserva;          
         }  
     }    
+
+    /**
+     * Comprueba si una fecha está comprendida entre el día de inicio y el día de finalización de la ReservaHabitacion.
+     * @param fecha a evaluar, ReservaHabitación rh proporciona el intervalo de fechas
+     * @return true si la fecha está entre inicio y el final de la reserva rh indicada; si no, false.
+     */
+    public static boolean fechaEntre(LocalDate fecha, ReservaHabitacion rh) {
+        //Devolvemos negación de OR en vez de comprobación sobre AND para evitar solapamientos en los días de inicio y final 
+        return !(fecha.isBefore(rh.getDiaInicio()) || fecha.isAfter(rh.getDiaFin()));
+    }
 }
+
+
