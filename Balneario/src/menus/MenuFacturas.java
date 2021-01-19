@@ -4,6 +4,7 @@ import factorias.FactoryFactura;
 import facturas.Factura;
 
 /**
+ * Permite al usuario acceder a las funciones que actúan sobre las facturas.
  * @author Gustavo Cortés Jiménez
  * @author Rodrigo Lázaro Escudero
  */

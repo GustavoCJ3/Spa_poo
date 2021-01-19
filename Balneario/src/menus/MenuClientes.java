@@ -68,19 +68,6 @@ public class MenuClientes extends Menu{
         System.out.println("Cliente añadido.\n");
     }
     
-    //No se pide funcionalidad para eliminación de clientes
-    /*
-    private void eliminarCliente(String dni){     
-        for(Cliente c: getBalneario().getClientes()){
-            if(c.getDni().equalsIgnoreCase(dni)) {
-                getBalneario().getClientes().remove(c);
-                return;
-            }
-        }
-        System.out.println("No existe ningún Cliente con el DNI indicado.\n");
-    }    
-    */
-    
     @Override
     public void opciones(byte respuesta){
         switch (respuesta){
@@ -92,7 +79,6 @@ public class MenuClientes extends Menu{
                 break;
             case 3:
                 agregarCliente();
-                //eliminarCliente(Cliente.pedirId());
                 break;
             case 4:
                 getBalneario().guardarDatos();

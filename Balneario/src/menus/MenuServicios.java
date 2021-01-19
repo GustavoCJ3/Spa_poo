@@ -59,6 +59,10 @@ public class MenuServicios extends Menu{
 
     }
     
+    /**
+     * Elimina un servicio almacenado en el sistema
+     * @param id el código del servicio que eliminar
+     */
     private void eliminarServicio(int id){
         //Se pueden borrar servicios y habitaciones sin comprometer la integridad estructural, ya que
         //sólo se eliminan las referencias, no los objetos. Éstos quedan vinculados a las reservas y/o

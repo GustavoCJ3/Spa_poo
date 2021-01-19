@@ -17,6 +17,7 @@ public class Habitacion implements Serializable{
         this.precio = precio;
     }
 
+    //setter - getter
     public int getNumero() {
         return numero;
     }
