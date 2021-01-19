@@ -36,15 +36,9 @@ public class FactoryReserva implements Factoria<Reserva>{
         
         numHabitacion = Habitacion.pedirNumero();        
         //Comprobamos que la habitación especificada esté registrada en el sistema
-        flag = false;
-        for(Habitacion h: Balneario.getInstancia().getHabitaciones()){
-            if (h.getNumero() == numHabitacion) {
-                flag = true;
-            }
-        }        
-        if (!flag) {
+        Habitacion h = Balneario.getInstancia().buscarHabitacion(numHabitacion);
+        if (h != null){
             System.out.println("La habitación indicada no está registrada en el sistema. Regístrela primero antes de usarla.\n");
-            
             return null;
         }
         
@@ -63,6 +57,7 @@ public class FactoryReserva implements Factoria<Reserva>{
         System.out.println("Introduce el tipo de reserva:\n"
                 + "1. Reserva de habitación.\n"
                 + "2. Reserva de servicio de Spa.\n");
+        flag = true;
         do{
             try{
                 sc = new Scanner(System.in);
@@ -104,19 +99,12 @@ public class FactoryReserva implements Factoria<Reserva>{
             }  
             
             //Pedir código servicio y comprobar si existe
-            codigoServicio = Servicio.pedirId();
-            flag = false;
-            for(Servicio s: Balneario.getInstancia().getServicios()){
-                if (s.getCodigo() == codigoServicio) {
-                    servicio = s;
-                    flag = true;
-                }
-            }        
-            if (!flag) {
+            codigoServicio = Servicio.pedirId();            
+            Servicio s = Balneario.getInstancia().buscarServicio(codigoServicio);
+            if (s == null){
                 System.out.println("El servicio indicado no está registrado en el sistema. Regístrelo primero antes de usarlo.\n");
-
                 return null;
-            }  
+            }
             
             //Pedir fecha del servicio
             System.out.println("Introduce la fecha para reservar servicio de spa (formato aaaa-mm-dd): \n");     
@@ -161,41 +149,34 @@ public class FactoryReserva implements Factoria<Reserva>{
             String idCliente = Cliente.pedirId();
             LocalDate diaFin = LocalDate.now();
 
+            
+            
             //Comprobamos que el DNI esté registrado en el sistema        
-            for(Cliente c: Balneario.getInstancia().getClientes()){
-                if (c.getDni().equalsIgnoreCase(idCliente)) {
-                    
-                    System.out.println("Introduce la fecha de finalización de la reserva (formato aaaa-mm-dd): \n");     
-                    do{
-                        try {
-                            br = new BufferedReader(new InputStreamReader(System.in),1);
-                            diaFin = LocalDate.parse(br.readLine());
-                            flag = false;
-                        } catch(Exception e) {
-                            System.out.println("\nError, fecha inválida. El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25)."
-                                    + "Además, la fecha de fin de reserva debe ser superior a la fecha de inicio.\n");
-                        }
-                    }while(flag);
-                    
-                    //Buscamos el coste de la habitación
-                    for(Habitacion h: Balneario.getInstancia().getHabitaciones()){
-                        if (h.getNumero() == numHabitacion) {
-                            coste = h.getPrecio();
-                        }
-                    }                    
-                    
-                    ReservaHabitacion reserva = new ReservaHabitacion(numReserva, numHabitacion, diaInicio, coste, c, diaFin);                    
-                    
-                    return (Reserva)reserva;
-                } 
+            Cliente c = Balneario.getInstancia().buscarCliente(idCliente);
+            if (c == null){
+                //Si el cliente no existe, indicamos al usuario que lo cree primero
+                System.out.println("El DNI del cliente indicado no está registrado en el sistema. Regístrelo antes de hacer la reserva a su nombre.\n");
+                return null;
             }
-            //Si el cliente no existe, indicamos al usuario que lo cree primero
-            System.out.println("El DNI del cliente indicado no está registrado en el sistema. Regístrelo antes de hacer la reserva a su nombre.\n");
 
-            return null;
+            System.out.println("Introduce la fecha de finalización de la reserva (formato aaaa-mm-dd): \n");     
+            do{
+                try {
+                    br = new BufferedReader(new InputStreamReader(System.in),1);
+                    diaFin = LocalDate.parse(br.readLine());
+                    flag = false;
+                } catch(Exception e) {
+                    System.out.println("\nError, fecha inválida. El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25)."
+                            + "Además, la fecha de fin de reserva debe ser superior a la fecha de inicio.\n");
+                }
+            }while(flag);
 
+            //Buscamos el coste de la habitación
+            Habitacion hab = Balneario.getInstancia().buscarHabitacion(numHabitacion);
+            coste = hab.getPrecio();
+
+            ReservaHabitacion reserva = new ReservaHabitacion(numReserva, numHabitacion, diaInicio, coste, c, diaFin);                                        
+            return (Reserva)reserva;
         }  
-
     }    
-
 }

@@ -87,25 +87,22 @@ public class MenuReservas extends Menu{
     /**
      * Elimina una reserva almacenada en el sistema
      */
-    private void eliminarReserva(int numReserva){        
-        for(Reserva r: getBalneario().getReservas()){
-            if(r.getNumReserva() == numReserva) {
-                
-                //Si es una ReservaSpa, eliminar de la lista del padre
-                if (r instanceof ReservaSpa) {
-                    ReservaHabitacion padre = ((ReservaSpa) r).getPadre();
-                    padre.eliminar(r);
-                } else { //Si es una ReservaHabitacion, eliminar todas las reservasSpa que contiene
-                    for (Reserva rs: ((ReservaHabitacion)r).getReservasSpa()) {
-                        getBalneario().getReservas().remove(rs);
-                    }
+    private void eliminarReserva(int numReserva){    
+        Reserva r = getBalneario().buscarReserva(numReserva);
+        if (r != null){
+            //Si es una ReservaSpa, eliminar de la lista del padre
+            if (r instanceof ReservaSpa) {
+                ReservaHabitacion padre = ((ReservaSpa) r).getPadre();
+                padre.eliminar(r);
+            } else { //Si es una ReservaHabitacion, eliminar todas las reservasSpa que contiene
+                for (Reserva rs: ((ReservaHabitacion)r).getReservasSpa()) {
+                    getBalneario().getReservas().remove(rs);
                 }
-                
-                //Finalmente, eliminar el propio nodo
-                getBalneario().getReservas().remove(r);
-                
-                return;
             }
+
+            //Finalmente, eliminar el propio nodo
+            getBalneario().getReservas().remove(r);
+            return;
         }
         System.out.println("No existe ninguna reserva con el código indicado.\n");
     }

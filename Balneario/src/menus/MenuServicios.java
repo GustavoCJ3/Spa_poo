@@ -43,8 +43,7 @@ public class MenuServicios extends Menu{
         if (s != null){
             System.out.println(s.infoServicio());
             return;
-        }
-        
+        }        
         System.out.println("No existe ningún servicio con el código indicado.\n");
     }
     
@@ -75,13 +74,14 @@ public class MenuServicios extends Menu{
     }
     
     private void eliminarServicio(int id){
-        //TODO asegurar integridad estrucutura. No dejará borrar Servicios o Habitaciones si hay Reservas de los mismos.
-        for(Servicio s: getBalneario().getServicios()){
-            if(s.getCodigo() == id) {
-                getBalneario().getServicios().remove(s);
-                return;
-            }
-        }
+        //Se pueden borrar servicios y habitaciones sin comprometer la integridad estructural, ya que
+        //sólo se eliminan las referencias, no los objetos. Éstos quedan vinculados a las reservas y/o
+        //a las facturas, manteniendo así el registro histórico y evitando null point exceptions.
+        Servicio s = getBalneario().buscarServicio(id);
+        if (s != null){
+            getBalneario().getServicios().remove(s);
+            return;
+        }        
         System.out.println("No existe ningún servicio con el código indicado.\n");
     }
     

@@ -56,12 +56,11 @@ public class MenuClientes extends Menu{
         //System.out.println("Introduce el DNI del cliente:\n"); //Ya lo pide Cliente.pedirId
         idCliente = Cliente.pedirId();
         
-        //Comprobamos que el DNI no esté ya en el sistema        
-        for(Cliente c: getBalneario().getClientes()){
-            if (c.getDni().equalsIgnoreCase(idCliente)) {
-                System.out.println("El DNI indicado ya está registrado en el sistema.\n");
-                return;
-            } 
+        //Comprobamos que el DNI no esté ya en el sistema   
+        Cliente c = getBalneario().buscarCliente(idCliente);
+        if (c != null){
+            System.out.println("El DNI indicado ya está registrado en el sistema.\n");
+            return;
         }
         
         fc = new FactoryCliente();
