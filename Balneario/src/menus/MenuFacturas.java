@@ -79,7 +79,7 @@ public class MenuFacturas extends Menu{
             getBalneario().getFacturas().add(factura);
             System.out.println("Factura generada con éxito.\n");
         } else {
-            System.out.println("La factura NO se ha creado. Por favor verifique que las habitaciones, clientes y reservas indicadas"
+            System.out.println("La factura NO se ha creado. Por favor verifique que las habitaciones, clientes y reservas indicadas "
                     + "estén registradas previamente en el sistema.\n");
         }
 
