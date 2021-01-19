@@ -146,9 +146,6 @@ public class FactoryReserva implements Factoria<Reserva>{
                     }
                 }
             }
-            
-            
-            
 
             //Pedir número de personas
             System.out.println("Introduce el número de personas que atenderán al servicio: \n");

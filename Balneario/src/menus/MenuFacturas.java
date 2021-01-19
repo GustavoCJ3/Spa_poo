@@ -72,8 +72,6 @@ public class MenuFacturas extends Menu{
             }
         } while(duplicado);     
         
-        //System.out.println(String.format("%08d", idFactura)); //debug
-        
         ff = new FactoryFactura();
         
         Factura factura = ff.getInstancia(String.format("%08d", idFactura));

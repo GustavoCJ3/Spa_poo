@@ -26,6 +26,7 @@ public class FactoryFactura implements Factoria<Factura>{
         LocalDate fechaFactura = LocalDate.now();
 
         int numHabitacion;
+        LocalDate fechaInicio = LocalDate.now();
         boolean flag = true;
         BufferedReader br;
         
@@ -37,16 +38,38 @@ public class FactoryFactura implements Factoria<Factura>{
             return null;
         }
         
-        //Comprobamos que la habitación esté reservada
+        /** Pedimos al usuario que introduzca fecha de inicio de la reserva para poder identificar unívocamente la
+         * habitación y el periodo. Si no lo hiciésemos así, habría problemas en caso de estar reservada la habitación más
+         * de una vez.
+        */
+        System.out.println("Introduce la fecha de inicio de la reserva cuya factura se desea: \n");   
+        flag = true;
+        do{
+            try {
+                br = new BufferedReader(new InputStreamReader(System.in),1);
+                fechaInicio = LocalDate.parse(br.readLine());
+
+                flag = false;
+            } catch(Exception e) {
+                System.out.println("\nError, fecha inválida. El formato de la fecha debe ser aaaa-mm-dd (Ejemplo: 2000-10-25).\n");
+            }            
+        }while(flag);
+        
+        
+        //Comprobamos que la habitación esté reservada y que la fecha de Inicio usada para identificar unívocamente el periodo coincide
         flag = false;
         for (Reserva r: Balneario.getInstancia().getReservas()){
-            if ((r.getNumHabitacion() == numHabitacion) && (r instanceof ReservaHabitacion)){
+            //r instanceof ReservaHabitacion
+            //r.getNumHabitacion() == numHabitacion
+            //r.getDiaInicio().isEqual(fechaInicio)
+            if ((r instanceof ReservaHabitacion) && (r.getNumHabitacion() == numHabitacion) && (r.getDiaInicio().isEqual(fechaInicio))){
                 reserva = (ReservaHabitacion)r;
                 flag = true;
             }
         }
         if (!flag) {
-            System.out.println("La habitación indicada no tiene una reserva en vigencia. Imposible generar factura.\n");
+            System.out.println("La habitación indicada no tiene una reserva en vigencia o la fecha de"
+                    +"\ninicio de la reserva no coincide. Imposible generar factura.\n");
             
             return null;
         }
