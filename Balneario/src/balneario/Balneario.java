@@ -48,6 +48,8 @@ public class Balneario implements Serializable{
             reservas = (ArrayList<Reserva>)ois.readObject();
             clientes = (ArrayList<Cliente>)ois.readObject();
             facturas = (ArrayList<Factura>)ois.readObject();
+            Servicio.codigoMax = ois.readInt();
+            Reserva.numMaxReserva = ois.readInt();
             ois.close();
             ois.close();
         }catch(FileNotFoundException e){
@@ -74,6 +76,8 @@ public class Balneario implements Serializable{
             oos.writeObject(reservas);
             oos.writeObject(clientes);
             oos.writeObject(facturas);
+            oos.writeInt(Servicio.codigoMax);
+            oos.writeInt(Reserva.numMaxReserva);
             oos.flush();
             oos.close();
             out.close();
@@ -103,8 +107,11 @@ public class Balneario implements Serializable{
         return null;
     }
     
-    //TODO todas estas probablemente podríamos buscar un patrón para reutilizar el código. De momento lo copio y luego ya limpiaremos
-    //TODO mirar en el código de Rodri dónde se puede reemplazar por estas funciones.
+    /**
+     * Devuelve el servicio cuyo id se corresponda con el recibido.
+     * @param idServicio el id del servicio.
+     * @return el servicio correspondiente; si no, null
+     */
     public Servicio buscarServicio(int idServicio){
         for (Servicio s: servicios){
             if (s.getCodigo() == idServicio){
@@ -114,6 +121,11 @@ public class Balneario implements Serializable{
         return null;
     }
     
+    /**
+     * Devuelve la reserva cuyo id se corresponda con el recibido.
+     * @param idReserva el id de la reserva.
+     * @return la reserva correspondiente; si no, null
+     */
     public Reserva buscarReserva(int idReserva){
         for (Reserva r: reservas){
             if (r.getNumReserva() == idReserva){
@@ -123,6 +135,11 @@ public class Balneario implements Serializable{
         return null;
     }
     
+    /**
+     * Devuelve el cliente cuyo id se corresponda con el recibido.
+     * @param idCliente el id del cliente.
+     * @return el cliente correspondiente; si no, null.
+     */
     public Cliente buscarCliente(String idCliente){
         for (Cliente c: clientes){
             if (c.getDni().compareToIgnoreCase(idCliente) == 0){
@@ -132,6 +149,11 @@ public class Balneario implements Serializable{
         return null;
     }
     
+    /**
+     * Devuelve la factura cuyo número de corresponda con el recibido.
+     * @param numero el número de la factura.
+     * @return la factura correspondiente; si no, null.
+     */
     public Factura buscarFacura(String numero){
         for (Factura f: facturas){
             if (f.getCodigo().equals(numero)){
