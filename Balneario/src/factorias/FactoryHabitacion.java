@@ -42,6 +42,7 @@ public class FactoryHabitacion implements Factoria<Habitacion>{
                 + "1. Habitación individual\n"
                 + "2. Habitación doble\n"
                 + "3. Habitación familiar\n");
+        flag = true;
         do{
             try{
                 Scanner sc = new Scanner(System.in);
