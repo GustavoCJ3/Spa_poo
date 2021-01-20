@@ -128,9 +128,9 @@ public class FactoryReserva implements Factoria<Reserva>{
             for (Reserva r : Balneario.getInstancia().getReservas()) {
                 //r instanceof ReservaSpa
                 //((ReservaSpa)r).getServicio().getCodigo() == codigoServicio
-                //((ReservaSpa)r).getDiaServicio() == diaServicio                        
-                if ((r instanceof ReservaSpa) && (((ReservaSpa)r).getServicio().getCodigo() == codigoServicio) && (((ReservaSpa)r).getDiaServicio() == diaServicio)){
-                    System.out.println("\nEl servicio no puede ser reservado ese día porque ya existe una reserva previa. Elije una fecha distinta.\n");
+                //((ReservaSpa)r).getDiaServicio() == diaServicio
+                if ((r instanceof ReservaSpa) && (((ReservaSpa)r).getServicio().getCodigo() == codigoServicio) && (((ReservaSpa)r).getDiaServicio().isEqual(diaServicio))){
+                    System.out.println("\nEl servicio no puede ser reservado ese día porque ya existe una reserva previa. Elija una fecha distinta.\n");
                     return null;
                 }
             }
