@@ -23,7 +23,6 @@ public class FactoryServicio implements Factoria<Servicio>{
         System.out.println("Introduce una descripción del servicio:\n");             
         do {
             try {
-                //TODO problemas de codificación al meterle caracters no ASCII. Arreglar.
                 br = new BufferedReader(new InputStreamReader(System.in),1);
                 descripcion = br.readLine();
                 flag = false;
