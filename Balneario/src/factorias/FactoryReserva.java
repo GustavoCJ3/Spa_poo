@@ -137,8 +137,8 @@ public class FactoryReserva implements Factoria<Reserva>{
             
             //Comprobamos que la fecha del servicio esté dentro del intervalo en que la habitación ha sido reservada
             for (Reserva r: Balneario.getInstancia().getReservas()) {
-                //Comprobamos sólo sobre reservas de habitaciones con el mismo número
-                if ((r instanceof ReservaHabitacion) && (r.getNumHabitacion() == numHabitacion)){                    
+                //Comprobamos sólo sobre reservas de habitaciones con el mismo número y con la fecha inicial adecuada
+                if ((r instanceof ReservaHabitacion) && (r.getNumHabitacion() == numHabitacion) && (diaInicio.isEqual(r.getDiaInicio()))){                    
                     //Comprobamos que la fecha del servicio esté comprendida en el periodo de reserva de la habitación
                     if (!fechaEntre(diaServicio, (ReservaHabitacion)r)){
                         System.out.println("Error. La reserva de spa debe estar comprendida entre el día de inicio y el día final de la reserva de habitación asociada.\n");
